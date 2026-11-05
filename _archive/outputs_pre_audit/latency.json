@@ -1,0 +1,10 @@
+{
+  "parameters": 68082,
+  "ms_per_graph_one_window": 4.49,
+  "ms_per_graph_all_windows": 68.1,
+  "windows_per_graph": 73,
+  "budget_ms_one_hop": 50.0,
+  "within_budget": true,
+  "hardware": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
+  "threads": 6
+}

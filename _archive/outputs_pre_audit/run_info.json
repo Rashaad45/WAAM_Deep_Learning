@@ -1,0 +1,167 @@
+{
+  "protocol": "loto",
+  "folds": 16,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "max_epochs": 60,
+  "patience": 10,
+  "models": [
+    "cnn1d",
+    "bilstm",
+    "fusion_mlp",
+    "gcn",
+    "gat"
+  ],
+  "ablations": [
+    "without_force_features",
+    "without_acceleration_features",
+    "without_thermal_edges",
+    "without_kinematic_edges",
+    "no_spatial_edges",
+    "without_temporal_module",
+    "material_flag",
+    "classification_only",
+    "roughness_only"
+  ],
+  "quick": false,
+  "ra_labels_imputed": true,
+  "versions": {
+    "python": "3.11.4",
+    "torch": "2.6.0+cu124",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sklearn": "1.9.1"
+  },
+  "config": {
+    "window_ms": 100.0,
+    "overlap": 0.5,
+    "hidden_dim": 64,
+    "heads": 4,
+    "dropout": 0.25,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "temporal_kernel": 3,
+    "regression_weight": 1.0,
+    "thermal_diffusivity_m2_s": 4.882154882154882e-05
+  },
+  "dataset": [
+    {
+      "trial": "trial_04",
+      "material": "WROUGHT",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_06",
+      "material": "WROUGHT",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_07",
+      "material": "WROUGHT",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_08",
+      "material": "WROUGHT",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_09",
+      "material": "WROUGHT",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_10",
+      "material": "WROUGHT",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_11",
+      "material": "WAAM",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_12",
+      "material": "WAAM",
+      "unstable": 2,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_13",
+      "material": "WAAM",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_14",
+      "material": "WAAM",
+      "unstable": 1,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_15",
+      "material": "WAAM",
+      "unstable": 1,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_16",
+      "material": "WAAM",
+      "unstable": 5,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_17",
+      "material": "WAAM",
+      "unstable": 1,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_18",
+      "material": "WAAM",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_19",
+      "material": "WAAM",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    },
+    {
+      "trial": "trial_20",
+      "material": "WAAM",
+      "unstable": 0,
+      "zones": 6,
+      "windows": 73
+    }
+  ],
+  "total_minutes": 272.8
+}

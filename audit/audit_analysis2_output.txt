@@ -1,0 +1,70 @@
+﻿graphs: 16 x shape (6, 73, 64) force_raw (6, 73, 3, 1250)
+
+alpha = 4.882154882154882e-05
+A_kin=
+ [[0. 1. 0. 0. 0. 0.]
+ [1. 0. 1. 0. 0. 0.]
+ [0. 1. 0. 1. 0. 0.]
+ [0. 0. 1. 0. 1. 0.]
+ [0. 0. 0. 1. 0. 1.]
+ [0. 0. 0. 0. 1. 0.]]
+A_th=
+ [[0.    0.966 0.934 0.903 0.872 0.843]
+ [0.966 0.    0.966 0.934 0.903 0.872]
+ [0.934 0.966 0.    0.966 0.934 0.903]
+ [0.903 0.934 0.966 0.    0.966 0.934]
+ [0.872 0.903 0.934 0.966 0.    0.966]
+ [0.843 0.872 0.903 0.934 0.966 0.   ]]
+all trials share identical adj: True
+diffusion length sqrt(4 alpha dt) for dt=3.75 s: 27.1 mm
+
+material flag after standardisation (test trial, value, train std):
+   ('trial_04', 'WROUGHT', -1.4998682737350464, 0.46157899498939514)
+   ('trial_06', 'WROUGHT', -1.4998682737350464, 0.46157899498939514)
+   ('trial_07', 'WROUGHT', -1.4998682737350464, 0.46157899498939514)
+   ('trial_08', 'WROUGHT', -1.4998682737350464, 0.46157899498939514)
+   ('trial_09', 'WROUGHT', -1.4998682737350464, 0.46157899498939514)
+   ('trial_10', 'WROUGHT', -1.4998682737350464, 0.46157899498939514)
+   ('trial_11', 'WAAM', 0.7904999256134033, 0.48654699325561523)
+   ('trial_12', 'WAAM', 0.7904999256134033, 0.48654699325561523)
+   ('trial_13', 'WAAM', 0.7904999256134033, 0.48654699325561523)
+   ('trial_14', 'WAAM', 0.7904999256134033, 0.48654699325561523)
+   ('trial_15', 'WAAM', 0.7904999256134033, 0.48654699325561523)
+   ('trial_16', 'WAAM', 0.7904999256134033, 0.48654699325561523)
+   ('trial_17', 'WAAM', 0.7904999256134033, 0.48654699325561523)
+   ('trial_18', 'WAAM', 0.7904999256134033, 0.48654699325561523)
+   ('trial_19', 'WAAM', 0.7904999256134033, 0.48654699325561523)
+   ('trial_20', 'WAAM', 0.7904999256134033, 0.48654699325561523)
+
+validation trials per fold and their positives:
+  fold  0 test=trial_04 val=['trial_19', 'trial_09'] val_pos=0
+  fold  1 test=trial_06 val=['trial_16', 'trial_07'] val_pos=5
+  fold  2 test=trial_07 val=['trial_14', 'trial_04'] val_pos=1
+  fold  3 test=trial_08 val=['trial_11', 'trial_04'] val_pos=0
+  fold  4 test=trial_09 val=['trial_12', 'trial_10'] val_pos=2
+  fold  5 test=trial_10 val=['trial_17', 'trial_09'] val_pos=1
+  fold  6 test=trial_11 val=['trial_16', 'trial_08'] val_pos=5
+  fold  7 test=trial_12 val=['trial_20', 'trial_09'] val_pos=0
+  fold  8 test=trial_13 val=['trial_17', 'trial_08'] val_pos=1
+  fold  9 test=trial_14 val=['trial_17', 'trial_10'] val_pos=1
+  fold 10 test=trial_15 val=['trial_13', 'trial_09'] val_pos=0
+  fold 11 test=trial_16 val=['trial_18', 'trial_04'] val_pos=0
+  fold 12 test=trial_17 val=['trial_14', 'trial_10'] val_pos=1
+  fold 13 test=trial_18 val=['trial_15', 'trial_04'] val_pos=1
+  fold 14 test=trial_19 val=['trial_17', 'trial_09'] val_pos=1
+  fold 15 test=trial_20 val=['trial_18', 'trial_06'] val_pos=0
+  folds whose validation set has ZERO positives: 6/16
+
+parameter counts:
+  cnn1d          5730
+  bilstm        66818
+  fusion_mlp    13986
+  gcn           67938
+  gat           68082
+  logistic regression ~ 65 (features + intercept)
+  P(random peak within +/-0.5 Hz of 16.67 Hz harmonic) = 0.060
+  P(random peak within +/-1 Hz of 16.67 Hz harmonic) = 0.120
+  P(random peak within +/-2 Hz of 16.67 Hz harmonic) = 0.240
+  P(random peak within +/-0.5 Hz of 23.33 Hz harmonic) = 0.043
+  P(random peak within +/-1 Hz of 23.33 Hz harmonic) = 0.086
+  P(random peak within +/-2 Hz of 23.33 Hz harmonic) = 0.171

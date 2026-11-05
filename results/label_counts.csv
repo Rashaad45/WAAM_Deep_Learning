@@ -1,0 +1,4 @@
+threshold_db,n_zones,n_positive,n_trials,n_trials_with_positive,zones_within_2db
+15.0,48,25,16,12,24
+20.0,48,1,16,1,12
+25.0,48,0,16,0,1

@@ -1,0 +1,193 @@
+model,variant,fold,trial_id,rmse_um
+Logistic regression,full,0,trial_04,
+Logistic regression,full,1,trial_06,
+Logistic regression,full,2,trial_07,
+Logistic regression,full,3,trial_08,
+Logistic regression,full,4,trial_09,
+Logistic regression,full,5,trial_10,
+Logistic regression,full,6,trial_11,
+Logistic regression,full,7,trial_12,
+Logistic regression,full,8,trial_13,
+Logistic regression,full,9,trial_14,
+Logistic regression,full,10,trial_15,
+Logistic regression,full,11,trial_16,
+Logistic regression,full,12,trial_17,
+Logistic regression,full,13,trial_18,
+Logistic regression,full,14,trial_19,
+Logistic regression,full,15,trial_20,
+Predict training mean (reference),full,0,trial_04,0.2600002884864807
+Predict training mean (reference),full,1,trial_06,0.2600002884864807
+Predict training mean (reference),full,2,trial_07,0.2600002884864807
+Predict training mean (reference),full,3,trial_08,0.2600002884864807
+Predict training mean (reference),full,4,trial_09,0.2600002884864807
+Predict training mean (reference),full,5,trial_10,0.2600002884864807
+Predict training mean (reference),full,6,trial_11,0.15599989891052246
+Predict training mean (reference),full,7,trial_12,0.15599989891052246
+Predict training mean (reference),full,8,trial_13,0.15599989891052246
+Predict training mean (reference),full,9,trial_14,0.15599989891052246
+Predict training mean (reference),full,10,trial_15,0.15599989891052246
+Predict training mean (reference),full,11,trial_16,0.15599989891052246
+Predict training mean (reference),full,12,trial_17,0.15599989891052246
+Predict training mean (reference),full,13,trial_18,0.15599989891052246
+Predict training mean (reference),full,14,trial_19,0.15599989891052246
+Predict training mean (reference),full,15,trial_20,0.15599989891052246
+Random forest,full,0,trial_04,
+Random forest,full,1,trial_06,
+Random forest,full,2,trial_07,
+Random forest,full,3,trial_08,
+Random forest,full,4,trial_09,
+Random forest,full,5,trial_10,
+Random forest,full,6,trial_11,
+Random forest,full,7,trial_12,
+Random forest,full,8,trial_13,
+Random forest,full,9,trial_14,
+Random forest,full,10,trial_15,
+Random forest,full,11,trial_16,
+Random forest,full,12,trial_17,
+Random forest,full,13,trial_18,
+Random forest,full,14,trial_19,
+Random forest,full,15,trial_20,
+Random forest regressor,full,0,trial_04,0.17320682810625915
+Random forest regressor,full,1,trial_06,0.1536806932783959
+Random forest regressor,full,2,trial_07,0.005360037935885461
+Random forest regressor,full,3,trial_08,0.0
+Random forest regressor,full,4,trial_09,0.04229498097366653
+Random forest regressor,full,5,trial_10,0.17257634615435083
+Random forest regressor,full,6,trial_11,0.37710163930756174
+Random forest regressor,full,7,trial_12,0.0033982842753472204
+Random forest regressor,full,8,trial_13,0.012252688203367456
+Random forest regressor,full,9,trial_14,0.0
+Random forest regressor,full,10,trial_15,0.0
+Random forest regressor,full,11,trial_16,0.0009192389223145071
+Random forest regressor,full,12,trial_17,0.0007505554371254826
+Random forest regressor,full,13,trial_18,0.0
+Random forest regressor,full,14,trial_19,0.0
+Random forest regressor,full,15,trial_20,0.0018384778446290143
+Ridge regression,full,0,trial_04,0.138989327677551
+Ridge regression,full,1,trial_06,0.06323672153985714
+Ridge regression,full,2,trial_07,0.019499037496837426
+Ridge regression,full,3,trial_08,0.030517992146783773
+Ridge regression,full,4,trial_09,0.022714624131976495
+Ridge regression,full,5,trial_10,0.04196584794709582
+Ridge regression,full,6,trial_11,0.3546177875257005
+Ridge regression,full,7,trial_12,0.0261075643183552
+Ridge regression,full,8,trial_13,0.025783896872452496
+Ridge regression,full,9,trial_14,0.02608184532590137
+Ridge regression,full,10,trial_15,0.025350812168876007
+Ridge regression,full,11,trial_16,0.08690802509294154
+Ridge regression,full,12,trial_17,0.04490691407639718
+Ridge regression,full,13,trial_18,0.019538413438278533
+Ridge regression,full,14,trial_19,0.02039426426636462
+Ridge regression,full,15,trial_20,0.026187735828898624
+SVM (RBF),full,0,trial_04,
+SVM (RBF),full,1,trial_06,
+SVM (RBF),full,2,trial_07,
+SVM (RBF),full,3,trial_08,
+SVM (RBF),full,4,trial_09,
+SVM (RBF),full,5,trial_10,
+SVM (RBF),full,6,trial_11,
+SVM (RBF),full,7,trial_12,
+SVM (RBF),full,8,trial_13,
+SVM (RBF),full,9,trial_14,
+SVM (RBF),full,10,trial_15,
+SVM (RBF),full,11,trial_16,
+SVM (RBF),full,12,trial_17,
+SVM (RBF),full,13,trial_18,
+SVM (RBF),full,14,trial_19,
+SVM (RBF),full,15,trial_20,
+SVR (RBF),full,0,trial_04,0.2064181805194399
+SVR (RBF),full,1,trial_06,0.1377366770996438
+SVR (RBF),full,2,trial_07,0.10047095299927992
+SVR (RBF),full,3,trial_08,0.0702640559648317
+SVR (RBF),full,4,trial_09,0.07876984678182303
+SVR (RBF),full,5,trial_10,0.13826699147768462
+SVR (RBF),full,6,trial_11,0.24582239293494054
+SVR (RBF),full,7,trial_12,0.1183296763348135
+SVR (RBF),full,8,trial_13,0.10188955918282826
+SVR (RBF),full,9,trial_14,0.0908688818715885
+SVR (RBF),full,10,trial_15,0.10080075399091346
+SVR (RBF),full,11,trial_16,0.11271314159452885
+SVR (RBF),full,12,trial_17,0.12521340074955226
+SVR (RBF),full,13,trial_18,0.10585437801677648
+SVR (RBF),full,14,trial_19,0.09095341323386766
+SVR (RBF),full,15,trial_20,0.10428623297106096
+bilstm,full,0,trial_04,0.20425917331867013
+bilstm,full,1,trial_06,0.08258869562197073
+bilstm,full,2,trial_07,0.018261917133671795
+bilstm,full,3,trial_08,0.0107990579052293
+bilstm,full,4,trial_09,0.04395260458825518
+bilstm,full,5,trial_10,0.08066604888625287
+bilstm,full,6,trial_11,0.34184178182021646
+bilstm,full,7,trial_12,0.010498519382705742
+bilstm,full,8,trial_13,0.0137927993622004
+bilstm,full,9,trial_14,0.018347233110995117
+bilstm,full,10,trial_15,0.02965837193124636
+bilstm,full,11,trial_16,0.02921482738840315
+bilstm,full,12,trial_17,0.040234941067887935
+bilstm,full,13,trial_18,0.031553354805053585
+bilstm,full,14,trial_19,0.013902970313004368
+bilstm,full,15,trial_20,0.01680691248100979
+cnn1d,full,0,trial_04,0.3131576484711772
+cnn1d,full,1,trial_06,0.33144823635259524
+cnn1d,full,2,trial_07,0.34882717021547527
+cnn1d,full,3,trial_08,0.34976774226469515
+cnn1d,full,4,trial_09,0.33828344248705744
+cnn1d,full,5,trial_10,0.3498960631607312
+cnn1d,full,6,trial_11,0.10565338300117748
+cnn1d,full,7,trial_12,0.06892648498106589
+cnn1d,full,8,trial_13,0.10505262915210095
+cnn1d,full,9,trial_14,0.10997750302351408
+cnn1d,full,10,trial_15,0.11955151028395469
+cnn1d,full,11,trial_16,0.11894226713725589
+cnn1d,full,12,trial_17,0.16166470857064208
+cnn1d,full,13,trial_18,0.13278281664424546
+cnn1d,full,14,trial_19,0.14378399574104786
+cnn1d,full,15,trial_20,0.1144070121140377
+fusion_mlp,full,0,trial_04,0.15225983200404017
+fusion_mlp,full,1,trial_06,0.024110038048317177
+fusion_mlp,full,2,trial_07,0.04643087839797223
+fusion_mlp,full,3,trial_08,0.021102272405513947
+fusion_mlp,full,4,trial_09,0.023300084034697823
+fusion_mlp,full,5,trial_10,0.032630725282733926
+fusion_mlp,full,6,trial_11,0.37767020264611195
+fusion_mlp,full,7,trial_12,0.06395432095174806
+fusion_mlp,full,8,trial_13,0.05167120080951135
+fusion_mlp,full,9,trial_14,0.09143605515290626
+fusion_mlp,full,10,trial_15,0.02316531158419511
+fusion_mlp,full,11,trial_16,0.025111818031141313
+fusion_mlp,full,12,trial_17,0.08360477949210203
+fusion_mlp,full,13,trial_18,0.027728156606759962
+fusion_mlp,full,14,trial_19,0.022537834408839656
+fusion_mlp,full,15,trial_20,0.03397633978696333
+gat,full,0,trial_04,0.07695847828905848
+gat,full,1,trial_06,0.052590246421250285
+gat,full,2,trial_07,0.014385122409839761
+gat,full,3,trial_08,0.03050706475466112
+gat,full,4,trial_09,0.04912305753290664
+gat,full,5,trial_10,0.04618066220550484
+gat,full,6,trial_11,0.35875160348454715
+gat,full,7,trial_12,0.011575878493007688
+gat,full,8,trial_13,0.028118266299716015
+gat,full,9,trial_14,0.06183904455019941
+gat,full,10,trial_15,0.01104726261309232
+gat,full,11,trial_16,0.025607308994166283
+gat,full,12,trial_17,0.052952452308092104
+gat,full,13,trial_18,0.003964126915757183
+gat,full,14,trial_19,0.03461145614770715
+gat,full,15,trial_20,0.03419772887246246
+gcn,full,0,trial_04,0.08411606009561867
+gcn,full,1,trial_06,0.01645923918790948
+gcn,full,2,trial_07,0.018345305974694574
+gcn,full,3,trial_08,0.011894829807350028
+gcn,full,4,trial_09,0.07959735679271507
+gcn,full,5,trial_10,0.09161084373834796
+gcn,full,6,trial_11,0.3830066887367857
+gcn,full,7,trial_12,0.015094737000928934
+gcn,full,8,trial_13,0.02833504156427376
+gcn,full,9,trial_14,0.11289515438507221
+gcn,full,10,trial_15,0.017872530935396397
+gcn,full,11,trial_16,0.01700857537259865
+gcn,full,12,trial_17,0.05442624487138169
+gcn,full,13,trial_18,0.01504378383208703
+gcn,full,14,trial_19,0.024608033561514888
+gcn,full,15,trial_20,0.024903926462022136

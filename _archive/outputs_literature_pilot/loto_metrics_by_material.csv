@@ -1,0 +1,3 @@
+accuracy,precision,recall,f1,roc_auc,rmse_um,mae_um,r2,model,variant,material_type
+,,,,,0.06746253746300286,0.05546251734097799,0.0,gcn,roughness_only,WAAM
+,,,,,0.09672220668892403,0.06606323652797275,0.0,gcn,roughness_only,WROUGHT

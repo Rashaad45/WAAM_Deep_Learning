@@ -1,0 +1,31 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.11.4, pytest-8.3.4, pluggy-1.7.0 -- C:\Program Files\Python311\python.exe
+rootdir: C:\Project\Deep Leanring x MP2\deep learning x mp2\waam_gnn_pipeline
+plugins: anyio-4.15.1, platformdirs-4.12.4
+collecting ... collected 23 items
+
+tests/test_pipeline.py::test_harmonic_mask PASSED                        [  4%]
+tests/test_pipeline.py::test_label_rule_peak_on_and_off_harmonic[0.0-0] PASSED [  8%]
+tests/test_pipeline.py::test_label_rule_peak_on_and_off_harmonic[3.0-1] PASSED [ 13%]
+tests/test_pipeline.py::test_label_rule_threshold PASSED                 [ 17%]
+tests/test_pipeline.py::test_chatter_indicator_uses_spindle_harmonics PASSED [ 21%]
+tests/test_pipeline.py::test_measured_spindle_frequency PASSED           [ 26%]
+tests/test_pipeline.py::test_zone_segmentation PASSED                    [ 30%]
+tests/test_pipeline.py::test_kinematic_adjacency_only PASSED             [ 34%]
+tests/test_pipeline.py::test_loto_split_has_no_overlap PASSED            [ 39%]
+tests/test_pipeline.py::test_external_samples_cannot_enter_waam_splits PASSED [ 43%]
+tests/test_pipeline.py::test_window_mean_aggregation_is_order_invariant[fusion_mlp] PASSED [ 47%]
+tests/test_pipeline.py::test_window_mean_aggregation_is_order_invariant[cnn1d] PASSED [ 52%]
+tests/test_pipeline.py::test_window_mean_aggregation_is_order_invariant[small_gnn] PASSED [ 56%]
+tests/test_pipeline.py::test_every_model_uses_window_mean[cnn1d] PASSED  [ 60%]
+tests/test_pipeline.py::test_every_model_uses_window_mean[bilstm] PASSED [ 65%]
+tests/test_pipeline.py::test_every_model_uses_window_mean[fusion_mlp] PASSED [ 69%]
+tests/test_pipeline.py::test_every_model_uses_window_mean[gcn] PASSED    [ 73%]
+tests/test_pipeline.py::test_every_model_uses_window_mean[gat] PASSED    [ 78%]
+tests/test_pipeline.py::test_every_model_uses_window_mean[small_gnn] PASSED [ 82%]
+tests/test_pipeline.py::test_classical_aggregation_is_window_mean PASSED [ 86%]
+tests/test_pipeline.py::test_appended_feature_survives_standardisation_and_reaches_network PASSED [ 91%]
+tests/test_pipeline.py::test_loss_is_weighted_bce_only PASSED            [ 95%]
+tests/test_pipeline.py::test_small_gnn_capacity PASSED                   [100%]
+
+============================= 23 passed in 18.56s =============================

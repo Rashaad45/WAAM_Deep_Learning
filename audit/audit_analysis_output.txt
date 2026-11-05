@@ -1,0 +1,67 @@
+﻿=== positives per trial ===
+{'trial_12': 2, 'trial_14': 1, 'trial_15': 1, 'trial_16': 5, 'trial_17': 1} total 10 of 96
+
+=== 3a label alignment: mismatched y_class rows: 0 / 3072  mismatched y_reg rows: 0
+fold -> trial uniqueness: 1 trial(s) per fold
+
+=== 3: AUC pooled / per-fold / within-trial-rank / permutation null ===
+              model  auc_pooled  auc_if_inverted  null_mean  null_q025  null_q975  perm_p_two_sided  auc_waam_only  auc_within_trial_centred  r_trainprev_vs_mean_prob                                per_fold
+Logistic regression       0.888            0.112      0.499      0.313      0.690             0.000          0.818                     0.683                    -0.850 12:0.38;14:1.00;15:0.80;16:0.60;17:0.80
+      Random forest       0.717            0.283      0.501      0.310      0.685             0.022          0.523                     0.571                    -0.213 12:0.56;14:1.00;15:0.40;16:1.00;17:0.20
+          SVM (RBF)       0.524            0.476      0.500      0.314      0.692             0.792          0.438                     0.713                     0.076 12:0.50;14:1.00;15:0.80;16:1.00;17:0.40
+             bilstm       0.308            0.692      0.499      0.313      0.685             0.043          0.254                     0.274                     0.251 12:0.25;14:0.00;15:0.40;16:0.20;17:0.40
+              cnn1d       0.460            0.540      0.498      0.313      0.688             0.679          0.502                     0.490                     0.221 12:0.38;14:0.40;15:1.00;16:0.80;17:0.20
+         fusion_mlp       0.635            0.365      0.502      0.313      0.690             0.170          0.592                     0.598                    -0.284 12:0.38;14:0.20;15:0.80;16:0.60;17:0.60
+                gat       0.471            0.529      0.501      0.306      0.692             0.766          0.404                     0.462                     0.039 12:0.50;14:0.00;15:0.80;16:0.40;17:0.60
+                gcn       0.550            0.450      0.503      0.312      0.695             0.620          0.460                     0.514                    -0.009 12:0.50;14:0.00;15:0.80;16:0.20;17:0.60
+
+=== mean predicted probability per held-out trial (deep models, seeds averaged) ===
+model     Logistic regression  bilstm  cnn1d  fusion_mlp    gat    gcn  n_pos
+trial_id                                                                     
+trial_04                0.000   0.005  0.336       0.003  0.003  0.002      0
+trial_06                0.000   0.357  0.582       0.196  0.138  0.166      0
+trial_07                0.001   0.113  0.367       0.006  0.008  0.011      0
+trial_08                0.000   0.016  0.430       0.034  0.086  0.039      0
+trial_09                0.002   0.370  0.408       0.397  0.206  0.180      0
+trial_10                0.011   0.326  0.380       0.292  0.217  0.237      0
+trial_11                0.181   0.356  0.561       0.384  0.236  0.288      0
+trial_12                0.097   0.001  0.162       0.005  0.003  0.005      2
+trial_13                0.314   0.702  0.462       0.757  0.786  0.754      0
+trial_14                0.232   0.588  0.370       0.651  0.684  0.587      1
+trial_15                0.317   0.162  0.499       0.212  0.227  0.210      1
+trial_16                0.901   0.130  0.405       0.618  0.203  0.253      5
+trial_17                0.055   0.284  0.113       0.002  0.011  0.020      1
+trial_18                0.144   0.572  0.331       0.116  0.067  0.028      0
+trial_19                0.041   0.483  0.367       0.382  0.527  0.494      0
+trial_20                0.018   0.028  0.396       0.003  0.011  0.009      0
+
+=== 7: epochs trained (early stopping) ===
+            count  mean   std   min   25%   50%   75%   max
+model                                                      
+bilstm       80.0  25.8  16.5  12.0  13.0  15.0  34.5  60.0
+cnn1d        80.0  18.1  12.6  11.0  11.0  12.0  16.2  60.0
+fusion_mlp   80.0  25.1  14.6  11.0  11.0  23.5  32.2  60.0
+gat          80.0  23.8  14.0  11.0  12.0  19.0  34.0  60.0
+gcn          80.0  24.1  14.4  11.0  11.8  20.0  32.2  60.0
+
+=== 2/9: Ra regression diagnostics ===
+Predict training mean (reference)  full                             RMSE=0.201  RMSE_WAAM=0.156 RMSE_WROUGHT=0.260  pred mean WAAM=1.064 WROUGHT=1.090
+Random forest regressor            full                             RMSE=0.119  RMSE_WAAM=0.119 RMSE_WROUGHT=0.119  pred mean WAAM=1.181 WROUGHT=0.910
+Ridge regression                   full                             RMSE=0.102  RMSE_WAAM=0.118 RMSE_WROUGHT=0.067  pred mean WAAM=1.192 WROUGHT=0.870
+SVR (RBF)                          full                             RMSE=0.128  RMSE_WAAM=0.127 RMSE_WROUGHT=0.130  pred mean WAAM=1.101 WROUGHT=0.952
+bilstm                             full                             RMSE=0.106  RMSE_WAAM=0.111 RMSE_WROUGHT=0.098  pred mean WAAM=1.179 WROUGHT=0.895
+cnn1d                              full                             RMSE=0.228  RMSE_WAAM=0.120 RMSE_WROUGHT=0.339  pred mean WAAM=1.102 WROUGHT=1.169
+fusion_mlp                         full                             RMSE=0.111  RMSE_WAAM=0.130 RMSE_WROUGHT=0.068  pred mean WAAM=1.195 WROUGHT=0.850
+gat                                full                             RMSE=0.098  RMSE_WAAM=0.118 RMSE_WROUGHT=0.049  pred mean WAAM=1.190 WROUGHT=0.869
+gat                                material_flag                    RMSE=0.098  RMSE_WAAM=0.116 RMSE_WROUGHT=0.054  pred mean WAAM=1.203 WROUGHT=0.866
+gat                                no_spatial_edges                 RMSE=0.101  RMSE_WAAM=0.118 RMSE_WROUGHT=0.063  pred mean WAAM=1.204 WROUGHT=0.857
+gat                                roughness_only                   RMSE=0.095  RMSE_WAAM=0.111 RMSE_WROUGHT=0.059  pred mean WAAM=1.189 WROUGHT=0.863
+gat                                without_acceleration_features    RMSE=0.093  RMSE_WAAM=0.097 RMSE_WROUGHT=0.087  pred mean WAAM=1.191 WROUGHT=0.885
+gat                                without_force_features           RMSE=0.104  RMSE_WAAM=0.121 RMSE_WROUGHT=0.065  pred mean WAAM=1.184 WROUGHT=0.858
+gat                                without_kinematic_edges          RMSE=0.099  RMSE_WAAM=0.118 RMSE_WROUGHT=0.053  pred mean WAAM=1.191 WROUGHT=0.871
+gat                                without_temporal_module          RMSE=0.097  RMSE_WAAM=0.114 RMSE_WROUGHT=0.058  pred mean WAAM=1.200 WROUGHT=0.858
+gat                                without_thermal_edges            RMSE=0.093  RMSE_WAAM=0.110 RMSE_WROUGHT=0.054  pred mean WAAM=1.201 WROUGHT=0.868
+gcn                                full                             RMSE=0.108  RMSE_WAAM=0.129 RMSE_WROUGHT=0.061  pred mean WAAM=1.189 WROUGHT=0.872
+
+=== 9: 'predict training mean' vs 'predict training mean of same material' ===
+predict-global-train-mean RMSE 0.2014  predict-material-train-mean RMSE 0.0

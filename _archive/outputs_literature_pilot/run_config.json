@@ -1,0 +1,19 @@
+{
+  "models": [
+    "gcn"
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "outer_cv": "leave-one-trial-out",
+  "config": {
+    "window_ms": 50.0,
+    "acceleration_fs_hz": 25000.0,
+    "thermal_fps": null,
+    "thermal_diffusivity_m2_s": null
+  }
+}

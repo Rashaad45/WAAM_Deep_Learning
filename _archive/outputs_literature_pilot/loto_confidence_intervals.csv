@@ -1,0 +1,4 @@
+model,variant,metric,fold_mean,fold_sd,bootstrap_ci_low,bootstrap_ci_high,folds
+gcn,roughness_only,rmse_um,0.07471772670352307,0.052208696095759025,0.04161780516210446,0.1136561223645248,7
+gcn,roughness_only,mae_um,0.06516185857000804,0.050818362020455116,0.0360257930627891,0.1042638945295697,7
+gcn,roughness_only,r2,0.0,0.0,0.0,0.0,7

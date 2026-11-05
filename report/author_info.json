@@ -1,0 +1,14 @@
+{
+  "_help": "Fill in what you have, save, and rerun: python src/finalize_report.py --skip-regen. Leave a value empty to keep the placeholder (the checklist will list it).",
+  "title": "",
+  "authors_line": "",
+  "affiliations": "",
+  "correspondence": "",
+  "accelerometer": "",
+  "ir_camera": "",
+  "repository": "",
+  "author_contributions": "",
+  "funding": "",
+  "acknowledgments": "",
+  "ref1_article_number": ""
+}

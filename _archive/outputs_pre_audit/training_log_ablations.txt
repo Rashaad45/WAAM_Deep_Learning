@@ -1,0 +1,11 @@
+16 trial graphs, 16 LOTO folds, seeds [42, 43, 44, 45, 46], up to 60 epochs, stage 'ablations'
+  gat        without_force_features           done in 60.4 min
+  gat        without_acceleration_features    done in 58.7 min
+  gat        without_thermal_edges            done in 167.1 min
+  gat        without_kinematic_edges          done in 527.4 min
+  gat        no_spatial_edges                 done in 74.2 min
+  gat        without_temporal_module          done in 73.3 min
+  gat        material_flag                    done in 62.9 min
+  gat        classification_only              done in 72.7 min
+  gat        roughness_only                   done in 69.4 min
+Ablations done in 1169.0 min -> C:\Project\Deep Leanring x MP2\deep learning x mp2\waam_gnn_pipeline\outputs\ablation.csv

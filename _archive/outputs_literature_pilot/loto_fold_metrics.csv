@@ -1,0 +1,8 @@
+accuracy,precision,recall,f1,roc_auc,rmse_um,mae_um,r2,model,variant,test_trial
+,,,,,0.17038182919693,0.16457640727361042,0.0,gcn,roughness_only,trial_04
+,,,,,0.0399322114541002,0.030889503161112466,0.0,gcn,roughness_only,trial_07
+,,,,,0.03144773549855136,0.028437302509943644,0.0,gcn,roughness_only,trial_08
+,,,,,0.03539577589835601,0.026226035753885903,0.0,gcn,roughness_only,trial_14
+,,,,,0.04265576849284716,0.03796733220418294,0.0,gcn,roughness_only,trial_15
+,,,,,0.09451786423621204,0.07621338367462158,0.0,gcn,roughness_only,trial_17
+,,,,,0.10869290214766472,0.09182304541269938,0.0,gcn,roughness_only,trial_20

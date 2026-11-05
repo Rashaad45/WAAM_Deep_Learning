@@ -1,0 +1,8 @@
+model,parameters
+cnn1d,5665
+bilstm,65665
+fusion_mlp,13793
+gcn,67745
+gat,67881
+small_gnn,1569
+logreg,63

@@ -1,0 +1,214 @@
+location,old,new,source
+Face milling was carried out on a conventional vertical mill,giving 10 trials per material and 20 in total [1].,"giving 10 trials per material and 20 in total [1]. Synchronised force and acceleration records exist for trials 4–20 of the archive; 16 of them (10 WAAM, 6 wrought) were usable (trials 1–3 have no force record; trial_05: cut burst only 9.4 s long (force record starts or ends mid-cut)).",raw files in WAAM/ (measured)
+"Vibration. Triaxial accelerometer [model], mounted [location","Vibration. Triaxial accelerometer [model], mounted [location], sampled at [XX] kHz. Because the force and acceleration streams were acquired at different rates, acceleration was resampled to [XX] kHz with an anti-aliasing low-pass filter before synchronisation, and unit consistency across the three axes was verified against [reference/calibration] before processing.","Triaxial accelerometer (model and mounting position not recorded in the data archive – [author to supply]), acquired with the KiNOVA data-acquisition software and sampled at 25 kHz (measured from the time column of every file). Force and acceleration were therefore recorded at the same rate and no resampling was needed for synchronisation; for the CNN encoders both streams were decimated by 2 to 12.5 kHz with an anti-aliasing polyphase filter (Nyquist 6.25 kHz, above both structural modes). All three axes are exported in g by the acquisition software, which was taken as the common unit reference.",raw files in WAAM/ (measured)
+"Temperature. Infrared camera [model], [resolution], [frame r","Temperature. Infrared camera [model], [resolution], [frame rate] fps, emissivity set to [value] after calibration against [method]. A region of interest following the tool–workpiece contact was extracted from each frame.","Infrared records were taken with a Sonel thermal imager (radiometric .irgd files, 384 × 288 pixels; exact model, frame rate and emissivity setting not recorded in the archive – [author to confirm]). The .irgd files could not be exported to calibrated temperature frames without the vendor software, so thermal images were NOT used as model input in the runs reported here; the thermal branch of the network is disabled and only the heat-diffusion edges (which depend on geometry and alloy properties, not on images) are retained.",raw files in WAAM/ (measured)
+Streams were aligned in time using [trigger/cross-correlatio,Streams were aligned in time using [trigger/cross-correlation of a common event]. [State the residual alignment uncertainty in ms.],"The force and acceleration PCs were not clock-synchronised, so streams were aligned by matching the RMS envelope of the acceleration (10 ms bins) to a step template that marks the cut in the force record; only lags for which the vibration record contains the whole cut were searched. The correlation at the selected lag was r = 0.43–0.97 (median 0.84) and the lags were -3.65 to +0.46 s. The residual alignment uncertainty is about ±10 ms (one envelope bin).",raw files in WAAM/ (measured)
+Instability labels. Each zone in each trial was labelled sta,"Instability labels. Each zone in each trial was labelled stable or unstable. Because the model receives spectral features, a label defined only from the same spectra would make high accuracy partly circular. Labels were therefore assigned from two sources: (i) the chatter indicator of Equation (7) computed on [the channel not used as model input / the full-duration record, using a threshold set before model training], and (ii) visual inspection of the machined surface under [×10] magnification for chatter marks in the corresponding zone. A zone was labelled unstable when [rule, e.g., both criteria agree; disagreements resolved by a second annotator blind to the spectra]. Inter-annotator agreement was [Cohen’s κ = X.XX]. [Report the resulting class balance.]","Each zone in each trial was labelled stable or unstable. Because the model receives spectral features, a label defined from the same short-window spectra would make high accuracy partly circular. Labels were therefore computed from the full-duration force record of each zone (≈3.75 s, Welch PSD with 32768 points, ≈0.76 Hz resolution, against ≈24 Hz in the 100 ms model windows) with a rule fixed before model training: a zone is unstable when the dominant peak of the summed three-axis force PSD in the 2.5–5.5 kHz band does not lie within ±2 Hz of a spindle-rotation harmonic and rises at least 20 dB above the band median. Visual inspection of the machined surface was not available for this dataset (no per-zone surface images in the archive), so the labels rest on this single criterion and inter-annotator agreement does not apply. The rule labelled 10 of 96 zones unstable (10.4%): 10/60 for waam, 0/36 for wrought.",data/zone_labels.csv
+Roughness labels. Ra was measured with [instrument] in accor,"Roughness labels. Ra was measured with [instrument] in accordance with ISO 21920-2 [or ISO 4287, whichever was used], with a cut-off of [0.8] mm and evaluation length of [4] mm, at [M] positions per zone, oriented [perpendicular to the feed marks]. Measurement repeatability, estimated from [n] repeat measurements at one location, was  µm. This value sets a floor below which a reported prediction error has no physical meaning.","Zone-level Ra measurements are not available in the data archive. The earlier study [1] reports Ra as specimen means over three positions (left, centre, right): 1.22 µm for WAAM and 0.83 µm for wrought material. In the runs reported here every zone was assigned the mean of its specimen (IMPUTED), so the Ra head can only learn the material difference and Ra errors must not be read as zone-level prediction errors. Measured zone values (instrument, ISO 21920-2 cut-off and evaluation length, positions per zone) can be entered in data/ra_measurements.csv, after which the pipeline uses them automatically. Measurement repeatability σ_meas is likewise not available.",ref. [1]
+where  is the analysis band (here 2.5–5.5 kHz) and  is [X] H,(here [2.5–5.5] kHz),(here 2.5–5.5 kHz),src/config.py
+where  is the analysis band (here 2.5–5.5 kHz) and  is 12.2 , is [X] Hz.," is 12.2 Hz (half a Welch bin of the 1024-point segments, around each tooth-passing harmonic).",src/config.py
+Window length was 100 ms with 50% overlap (73 windows per zo,"Window length was [X] ms with [50]% overlap, which spans [X] tooth periods","Window length was 100 ms with 50% overlap (73 windows per zone), which spans 6.7 tooth periods",src/config.py
+Window length was 100 ms with 50% overlap (73 windows per zo,and [X] at 1400 rpm,and 9.3 at 1400 rpm,src/config.py
+Nodes.  are cutting zones obtained by dividing the 30 mm too,dividing the [30] mm tool path,dividing the 30 mm tool path,ref. [1]
+Nodes.  are cutting zones obtained by dividing the 30 mm too,segments of [5] mm.,"segments of 5 mm (in practice the detected cut of each force record, 20.9–24.3 s long, was divided into six equal parts).",raw files in WAAM/ (measured)
+"where  is the centre-to-centre distance,  the time between t", [values to be checked against the alloy datasheet; the WAAM deposit may differ], (datasheet values for wrought Al 5356; the WAAM deposit may differ),alloy datasheet
+"Before the graph layers, each modality passes through a ligh",and a small 2D-CNN over the thermal region of interest.,"and a small 2D-CNN over the thermal region of interest (disabled in the runs reported here, since no calibrated thermal frames were available).",raw files in WAAM/ (measured)
+where  and  are learned. The fixed-weight loss with λ = 1 wa,[Report which variant was retained and the selected λ.],The fixed-weight loss with λ = 1 was retained; the uncertainty weighting was not used in the reported runs.,src/config.py
+Data splitting. Windows from one trial are strongly correlat,cross-validation (20 folds),cross-validation (16 folds),raw files in WAAM/ (measured)
+Data splitting. Windows from one trial are strongly correlat,on the remaining 19 trials,on the remaining 15 trials (one WAAM and one wrought trial held out for early stopping),raw files in WAAM/ (measured)
+Data splitting. Windows from one trial are strongly correlat," [Optionally: train on wrought, test on WAAM, to probe transfer across materials.]", Transfer from wrought to WAAM material was not evaluated.,this run
+RMSE is reported alongside . Because each test fold contains,. Metrics are given as mean ± standard deviation over folds with 95% bootstrap confidence intervals.,". Because each test fold contains only six zones, metrics are computed on the pooled out-of-fold predictions and given with 95% confidence intervals from 2000 bootstrap resamples of trials.",this run
+RMSE is reported alongside . Because each test fold contains,paired differences in fold-level F1 and RMSE with the ,paired differences in fold-level RMSE with the ,this run
+RMSE is reported alongside . Because each test fold contains,With 20 trials the statistical power,With 16 trials the statistical power,raw files in WAAM/ (measured)
+"Edge attribution. For the GAT, the mean attention coefficien",", and GNNExplainer [36] is used to identify the subgraphs most responsible for high-roughness predictions.",. (GNNExplainer [36] was not applied in the present runs.),this run
+Models were implemented in [PyTorch X.X and PyTorch Geometri,"Models were implemented in [PyTorch X.X and PyTorch Geometric X.X] and trained with Adam (learning rate [1 × 10⁻³], weight decay β = [1 × 10⁻⁴]), batch size [X] graphs, for up to [X] epochs with early stopping on the inner validation loss (patience [X]). Hidden dimension [X], [M] attention heads, temporal kernel , dropout [0.X]. Random seeds were fixed and each configuration was run with [5] seeds. Training used [GPU]; inference latency was measured on [hardware] (Section 5). Code and processed data are available at [repository].","Models were implemented in PyTorch 2.6.0 (graph convolution and attention layers written directly in PyTorch; PyTorch Geometric was not required for six-node graphs) and trained with Adam (learning rate 0.001, weight decay 0.0001), batch size 1 graph, for up to 60 epochs with early stopping on the inner validation loss (patience 10). Hidden dimension 64, 4 attention heads, temporal kernel K_t = 3, dropout 0.25. Random seeds were fixed and each configuration was run with 5 seed(s) (42, 43, 44, 45, 46). Training and inference latency were measured on the CPU of a laptop (AMD Ryzen 5 5500U, 6 cores, no GPU) (Section 5). Code and processed data are available at [repository – author to supply].",outputs/run_info.json
+table 'Quantity' r1c1,10,10 (10 usable),data/processed/dataset_summary.csv
+table 'Quantity' r2c1,[6],6,src/config.py
+table 'Quantity' r3c1,[ ],73,src/config.py
+table 'Quantity' r4c1,[ ],730,outputs/ (this run)
+table 'Quantity' r5c1,[ ] / [ ],10 / 50,data/zone_labels.csv
+table 'Quantity' r6c1,[ ],0 (mean of [1] imputed for 60),data/zone_labels.csv
+table 'Quantity' r7c1,[ ]–[ ],"1.22 (imputed, single value)",ref. [1]
+table 'Quantity' r8c1,[ ],not available,data archive
+table 'Quantity' r1c2,10,10 (6 usable),data/processed/dataset_summary.csv
+table 'Quantity' r2c2,[6],6,src/config.py
+table 'Quantity' r3c2,[ ],73,src/config.py
+table 'Quantity' r4c2,[ ],438,outputs/ (this run)
+table 'Quantity' r5c2,[ ] / [ ],0 / 36,data/zone_labels.csv
+table 'Quantity' r6c2,[ ],0 (mean of [1] imputed for 36),data/zone_labels.csv
+table 'Quantity' r7c2,[ ]–[ ],"0.83 (imputed, single value)",ref. [1]
+table 'Quantity' r8c2,[ ],not available,data archive
+table 'Quantity' r1c3,20,20 (16 usable),data/processed/dataset_summary.csv
+table 'Quantity' r4c3,[ ],1168,outputs/ (this run)
+table 'Quantity' r5c3,[ ] / [ ],10 / 86,data/zone_labels.csv
+table 'Quantity' r6c3,[ ],0 / 96,data/zone_labels.csv
+[Describe the class balance and how instability labels are d,"[Describe the class balance and how instability labels are distributed over speed, depth of cut and material. If no wrought trial was labelled unstable, say so, because it changes how the classification results should be read.]","The dataset is strongly imbalanced: 10 of 96 zones (10.4%) were labelled unstable, in 5 trials (trial_12 (1000 rpm, 0.75 mm): 2/6; trial_14 (1000 rpm, 1.25 mm): 1/6; trial_15 (1000 rpm, 1.50 mm): 1/6; trial_16 (1400 rpm, 0.50 mm): 5/6; trial_17 (1400 rpm, 0.75 mm): 1/6). No wrought trial was labelled unstable, so every unstable zone is a WAAM zone; a classifier can therefore partly separate the classes through material-related signal differences, and the classification results below must be read with this confound in mind. Ra targets are the material means of [1] (Table 1), so Ra results measure how well each model recognises the material from the signals, not zone-level roughness.",data/zone_labels.csv
+table 'Model' r1c2,[ ],93.8 (88.5–97.9),outputs/ (this run)
+table 'Model' r1c3,[ ],0.75 (0.00–0.83),outputs/ (this run)
+table 'Model' r1c4,[ ],0.60 (0.00–1.00),outputs/ (this run)
+table 'Model' r1c5,[ ],0.67 (0.00–0.86),outputs/ (this run)
+table 'Model' r1c6,[ ],0.89 (0.67–0.99),outputs/ (this run)
+table 'Model' r2c2,[ ],89.6 (78.1–97.9),outputs/ (this run)
+table 'Model' r2c3,[ ],0.50 (0.00–1.00),outputs/ (this run)
+table 'Model' r2c4,[ ],0.10 (0.00–0.50),outputs/ (this run)
+table 'Model' r2c5,[ ],0.17 (0.00–0.67),outputs/ (this run)
+table 'Model' r2c6,[ ],0.72 (0.56–0.92),outputs/ (this run)
+table 'Model' r3c2,[ ],89.6 (78.1–97.9),outputs/ (this run)
+table 'Model' r3c3,[ ],0.00 (0.00–0.00),outputs/ (this run)
+table 'Model' r3c4,[ ],0.00 (0.00–0.00),outputs/ (this run)
+table 'Model' r3c5,[ ],0.00 (0.00–0.00),outputs/ (this run)
+table 'Model' r3c6,[ ],0.52 (0.21–0.98),outputs/ (this run)
+table 'Model' r4c2,[ ],76.0 (59.4–91.7),outputs/ (this run)
+table 'Model' r4c3,[ ],0.07 (0.00–0.25),outputs/ (this run)
+table 'Model' r4c4,[ ],0.10 (0.00–0.50),outputs/ (this run)
+table 'Model' r4c5,[ ],0.08 (0.00–0.25),outputs/ (this run)
+table 'Model' r4c6,[ ],0.46 (0.09–0.74),outputs/ (this run)
+table 'Model' r5c2,[ ],68.8 (49.0–86.5),outputs/ (this run)
+table 'Model' r5c3,[ ],0.05 (0.00–0.13),outputs/ (this run)
+table 'Model' r5c4,[ ],0.10 (0.00–0.50),outputs/ (this run)
+table 'Model' r5c5,[ ],0.06 (0.00–0.18),outputs/ (this run)
+table 'Model' r5c6,[ ],0.31 (0.11–0.57),outputs/ (this run)
+table 'Model' r6c2,[ ],81.2 (64.6–94.8),outputs/ (this run)
+table 'Model' r6c3,[ ],0.28 (0.00–0.75),outputs/ (this run)
+table 'Model' r6c4,[ ],0.50 (0.00–0.81),outputs/ (this run)
+table 'Model' r6c5,[ ],0.36 (0.00–0.67),outputs/ (this run)
+table 'Model' r6c6,[ ],0.63 (0.20–0.89),outputs/ (this run)
+table 'Model' r7c2,[ ],75.0 (58.3–90.7),outputs/ (this run)
+table 'Model' r7c3,[ ],0.06 (0.00–0.16),outputs/ (this run)
+table 'Model' r7c4,[ ],0.10 (0.00–0.50),outputs/ (this run)
+table 'Model' r7c5,[ ],0.08 (0.00–0.20),outputs/ (this run)
+table 'Model' r7c6,[ ],0.55 (0.25–0.80),outputs/ (this run)
+table 'Model' r8c2,[ ],72.9 (54.2–90.6),outputs/ (this run)
+table 'Model' r8c3,[ ],0.06 (0.00–0.16),outputs/ (this run)
+table 'Model' r8c4,[ ],0.10 (0.00–0.50),outputs/ (this run)
+table 'Model' r8c5,[ ],0.07 (0.00–0.19),outputs/ (this run)
+table 'Model' r8c6,[ ],0.47 (0.22–0.74),outputs/ (this run)
+Table 2. Instability detection under leave-one-trial-out cro,(mean ± SD over 20 folds),(pooled out-of-fold predictions of 16 folds; 95% trial-bootstrap confidence interval in parentheses),outputs/ (this run)
+"[Text: state the best model, its margin over the fusion MLP ","[Text: state the best model, its margin over the fusion MLP with confidence interval and DeLong p-value, and whether the margin survives the leave-one-condition-out protocol (Table S1). Discuss recall separately from accuracy, because a missed instability is more costly than a false alarm in practice.]","The highest ROC-AUC was obtained by the Logistic regression (0.89 (0.67–0.99)). The ST-GAT reached an AUC of 0.47 (0.22–0.74) against 0.63 (0.20–0.89) for the multimodal fusion MLP without graph structure (difference -0.16, DeLong p = 0.015). The leave-one-condition-out protocol (Table S1) was not run for this draft. Recall, the share of unstable zones that were detected, was 0.10 (0.00–0.50) for the ST-GAT and 0.50 (0.00–0.81) for the fusion MLP; with only 10 unstable zones these intervals are wide, and accuracy is dominated by the stable majority class.",outputs/ (this run)
+table 'Model' r1c1,[ ],0.102 (0.034–0.163),outputs/ (this run)
+table 'Model' r1c2,[ ],0.057 (0.026–0.101),outputs/ (this run)
+table 'Model' r1c3,[ ],0.71 (-0.03–0.97),outputs/ (this run)
+table 'Model' r1c4,[ ],n/a (σ_meas unavailable),data archive
+table 'Model' r2c1,[ ],0.119 (0.043–0.183),outputs/ (this run)
+table 'Model' r2c2,[ ],0.054 (0.013–0.108),outputs/ (this run)
+table 'Model' r2c3,[ ],0.60 (-0.17–0.94),outputs/ (this run)
+table 'Model' r2c4,[ ],n/a (σ_meas unavailable),data archive
+table 'Model' r3c1,[ ],0.128 (0.103–0.156),outputs/ (this run)
+table 'Model' r3c2,[ ],0.120 (0.101–0.144),outputs/ (this run)
+table 'Model' r3c3,[ ],0.54 (0.07–0.70),outputs/ (this run)
+table 'Model' r3c4,[ ],n/a (σ_meas unavailable),data archive
+table 'Model' r4c1,[ ],0.228 (0.167–0.279),outputs/ (this run)
+table 'Model' r4c2,[ ],0.201 (0.147–0.257),outputs/ (this run)
+table 'Model' r4c3,[ ],-0.46 (-1.21–-0.31),outputs/ (this run)
+table 'Model' r4c4,[ ],n/a (σ_meas unavailable),data archive
+table 'Model' r5c1,[ ],0.106 (0.033–0.163),outputs/ (this run)
+table 'Model' r5c2,[ ],0.058 (0.024–0.106),outputs/ (this run)
+table 'Model' r5c3,[ ],0.68 (0.03–0.97),outputs/ (this run)
+table 'Model' r5c4,[ ],n/a (σ_meas unavailable),data archive
+table 'Model' r6c1,[ ],0.111 (0.041–0.174),outputs/ (this run)
+table 'Model' r6c2,[ ],0.066 (0.033–0.113),outputs/ (this run)
+table 'Model' r6c3,[ ],0.66 (-0.21–0.95),outputs/ (this run)
+table 'Model' r6c4,[ ],n/a (σ_meas unavailable),data archive
+table 'Model' r7c1,[ ],0.108 (0.038–0.174),outputs/ (this run)
+table 'Model' r7c2,[ ],0.060 (0.027–0.109),outputs/ (this run)
+table 'Model' r7c3,[ ],0.67 (-0.20–0.96),outputs/ (this run)
+table 'Model' r7c4,[ ],n/a (σ_meas unavailable),data archive
+table 'Model' r8c1,[ ],0.098 (0.033–0.160),outputs/ (this run)
+table 'Model' r8c2,[ ],0.054 (0.027–0.097),outputs/ (this run)
+table 'Model' r8c3,[ ],0.73 (-0.03–0.97),outputs/ (this run)
+table 'Model' r8c4,[ ],n/a (σ_meas unavailable),data archive
+table 'Model' r9c1,[ ],0.201 (0.172–0.227),outputs/ (this run)
+table 'Model' r9c2,[ ],0.195 (0.169–0.221),outputs/ (this run)
+table 'Model' r9c4,[ ],n/a (σ_meas unavailable),data archive
+Table 3. Zone-level Ra prediction under leave-one-trial-out , Zone-level Ra prediction under leave-one-trial-out cross-validation.," Zone-level Ra prediction under leave-one-trial-out cross-validation (pooled out-of-fold; Ra targets are material means of [1], see Section 2.3).",outputs/ (this run)
+[Text: include the trivial mean predictor so readers can jud,"[Text: include the trivial mean predictor so readers can judge the absolute size of the error. Show a parity plot (Figure 3) coloured by material, and a plot of predicted and measured Ra along the wall for two representative WAAM trials (Figure 4). Comment on whether errors concentrate at the end zones, where the tool enters and exits.]","Predicting the training-set mean gives an RMSE of 0.201 µm, the size of the error when the material is ignored. The lowest RMSE, 0.098 (0.033–0.160) µm, was obtained by the ST-GAT; the ST-GAT reached 0.098 (0.033–0.160) µm and the fusion MLP 0.111 (0.041–0.174) µm. Because every zone of a specimen carries the same imputed Ra, these errors measure material recognition; they do not show whether errors concentrate at the end zones, which requires measured zone-level Ra. Figure 3 shows the parity plot coloured by material and Figure 4 the predicted Ra along the wall for two WAAM trials (outputs/figures).",outputs/ (this run)
+table 'Configuration' r1c1,[ ],0.07,outputs/ (this run)
+table 'Configuration' r1c3,[ ],0.098,outputs/ (this run)
+table 'Configuration' r2c1,[ ],n/a (no calibrated IR),data archive
+table 'Configuration' r2c2,[ ],n/a (no calibrated IR),data archive
+table 'Configuration' r2c3,[ ],n/a (no calibrated IR),data archive
+table 'Configuration' r2c4,[ ],n/a (no calibrated IR),data archive
+table 'Configuration' r3c1,[ ],0.07,outputs/ (this run)
+table 'Configuration' r3c3,[ ],0.104,outputs/ (this run)
+table 'Configuration' r3c2,[ ],-0.00,outputs/ (this run)
+table 'Configuration' r3c4,[ ],+5.7,outputs/ (this run)
+table 'Configuration' r4c1,[ ],0.14,outputs/ (this run)
+table 'Configuration' r4c3,[ ],0.093,outputs/ (this run)
+table 'Configuration' r4c2,[ ],+0.07,outputs/ (this run)
+table 'Configuration' r4c4,[ ],-5.0,outputs/ (this run)
+table 'Configuration' r5c1,[ ],0.13,outputs/ (this run)
+table 'Configuration' r5c3,[ ],0.093,outputs/ (this run)
+table 'Configuration' r5c2,[ ],+0.06,outputs/ (this run)
+table 'Configuration' r5c4,[ ],-4.8,outputs/ (this run)
+table 'Configuration' r6c1,[ ],0.07,outputs/ (this run)
+table 'Configuration' r6c3,[ ],0.099,outputs/ (this run)
+table 'Configuration' r6c2,[ ],+0.00,outputs/ (this run)
+table 'Configuration' r6c4,[ ],+0.7,outputs/ (this run)
+table 'Configuration' r7c1,[ ],0.13,outputs/ (this run)
+table 'Configuration' r7c3,[ ],0.101,outputs/ (this run)
+table 'Configuration' r7c2,[ ],+0.06,outputs/ (this run)
+table 'Configuration' r7c4,[ ],+3.2,outputs/ (this run)
+table 'Configuration' r8c1,[ ],0.13,outputs/ (this run)
+table 'Configuration' r8c3,[ ],0.097,outputs/ (this run)
+table 'Configuration' r8c2,[ ],+0.06,outputs/ (this run)
+table 'Configuration' r8c4,[ ],-1.5,outputs/ (this run)
+table 'Configuration' r9c1,[ ],0.09,outputs/ (this run)
+table 'Configuration' r9c3,[ ],0.098,outputs/ (this run)
+table 'Configuration' r9c2,[ ],+0.02,outputs/ (this run)
+table 'Configuration' r9c4,[ ],-0.3,outputs/ (this run)
+table 'Configuration' r10c1,[ ],0.09,outputs/ (this run)
+table 'Configuration' r10c2,[ ],+0.02,outputs/ (this run)
+table 'Configuration' r10c3,[ ],0.095,outputs/ (this run)
+table 'Configuration' r10c4,[ ],-3.1,outputs/ (this run)
+[The “no spatial edges” row is the cleanest test of RQ1: it ,[The “no spatial edges” row is the cleanest test of RQ1: it keeps every input and parameter of the model except message passing between zones.],The “no spatial edges” row is the cleanest test of RQ1: it keeps every input and parameter of the model except message passing between zones. Removing all spatial edges changed F1 by +0.06 and Ra RMSE by +3.2%.,outputs/ (this run)
+table 'Modality' r1c1,[ ],n/a (no calibrated IR),data archive
+table 'Modality' r1c2,[ ],n/a (no calibrated IR),data archive
+table 'Modality' r1c3,[ ],n/a (no calibrated IR),data archive
+table 'Modality' r2c1,[ ],45.8,outputs/ (this run)
+table 'Modality' r2c2,[ ],46.8,outputs/ (this run)
+table 'Modality' r2c3,[ ],+5.7,outputs/ (this run)
+table 'Modality' r3c1,[ ],47.0,outputs/ (this run)
+table 'Modality' r3c2,[ ],44.2,outputs/ (this run)
+table 'Modality' r3c3,[ ],-5.0,outputs/ (this run)
+table 'Modality' r4c1,[ ],7.3,outputs/ (this run)
+table 'Modality' r4c2,[ ],9.0,outputs/ (this run)
+table 'Modality' r4c3,[ ],— (not ablated),outputs/ (this run)
+[Report mean attention on thermal versus kinematic edges for,"[Report mean attention on thermal versus kinematic edges for each material (Figure 5). Our previous results lead to a specific expectation, which the data may or may not support: thermal information should matter more for WAAM than for wrought material, because the WAAM cutting zone showed larger and more variable temperatures while its vibration amplitude was lower. State plainly whether this was observed.]","For waam trials the mean attention was 0.175 on kinematic and 0.170 on thermal edges. For wrought trials the mean attention was 0.177 on kinematic and 0.170 on thermal edges. Thermal images were not available as input, so the expectation from [1] that thermal information matters more for WAAM than for wrought material could not be tested with thermal features; only the heat-diffusion edges, which carry no measured temperature, were evaluated. Figure 5 shows the attention coefficients per material (outputs/figures).",outputs/ (this run)
+"RQ1. [Answer from Table 4, in particular the comparison betw","RQ1. [Answer from Table 4, in particular the comparison between the full model and the self-loops-only model. State whether the graph representation preserved or improved predictive information.]","Removing message passing between zones (self-loops only) changed F1 by +0.06 and Ra RMSE by +3.2% relative to the full ST-GAT. The graph representation preserved the predictive information. Removing the edges improved the predictions, so message passing did not help on this dataset.",outputs/ (this run)
+RQ2. [Answer from Tables 2 and 3. The decisive comparison is,"RQ2. [Answer from Tables 2 and 3. The decisive comparison is the GAT against the multimodal fusion MLP, not against single-modality baselines. If the two are within each other’s confidence intervals, the honest conclusion is that multimodality, not the graph, drives the improvement.]","The ST-GAT reached an AUC of 0.47 (0.22–0.74) and an Ra RMSE of 0.098 (0.033–0.160) µm, against 0.63 (0.20–0.89) and 0.111 (0.041–0.174) µm for the multimodal fusion MLP. The confidence intervals overlap, so with this dataset the improvement over single-modality baselines cannot be attributed to the graph rather than to the multimodal inputs.",outputs/ (this run)
+"RQ3. [Answer from Table 5 and the edge-attention analysis, s","RQ3. [Answer from Table 5 and the edge-attention analysis, separately for WAAM and wrought specimens. Relate the finding to the result in [1] that lower vibration amplitude coexisted with higher roughness in WAAM.]","Thermal features could not be evaluated because no calibrated infrared frames were available. Among the measured modalities, integrated gradients attributed 47% to acceleration, 46% to force, 7% to kinematic / geometric of the Ra prediction for WAAM trials, and 44% to acceleration, 47% to force, 9% to kinematic / geometric for wrought trials. Because the Ra targets are material means, these shares describe which signals identify the material, and the relation to the finding of [1] (lower vibration amplitude but higher roughness for WAAM) remains open until zone-level Ra is measured.",outputs/ (this run)
+Instability labels combine a spectral criterion and visual i,Instability labels combine a spectral criterion and visual inspection. Any rule that depends on spectra shares information with the model inputs; the protocol in Section 2.3 reduces but does not eliminate this dependence.,"Instability labels rest on a single spectral criterion applied to the full zone record; visual inspection of the surface was not available. Any rule that depends on spectra shares information with the model inputs; computing it at a much finer frequency resolution than the model windows (Section 2.3) reduces but does not eliminate this dependence. All unstable zones are WAAM zones, so instability and material are partly confounded. Ra targets are specimen means from [1], not zone measurements.",this run
+The thermal edge weights rest on one-dimensional conduction ,[describe how emissivity was handled],"thermal images were not used as model input in the present runs, so emissivity does not affect the reported results; it must be documented if calibrated frames are added",this run
+"Latency. For online use, inference must complete within one ","Latency. For online use, inference must complete within one window hop. With [X] ms windows and [50]% overlap, the budget is [X] ms. The ST-GAT has [X] parameters and required [X] ms per graph on [hardware], [within / outside] that budget. Because the graph is small (N = [6] nodes), the graph layers are cheap; the modality encoders dominate the computation.","For online use, inference must complete within one window hop. With 100 ms windows and 50% overlap, the budget is 50 ms. The ST-GAT has 68,082 parameters and required 4.5 ms per graph (six zones, one window) on a laptop CPU (AMD Ryzen 5 5500U, 6 threads), within that budget; a whole trial (73 windows) took 68 ms. Because the graph is small (N = 6 nodes), the graph layers are cheap; the modality encoders dominate the computation.",outputs/latency.json
+This work proposed a spatio-temporal graph formulation for m,"This work proposed a spatio-temporal graph formulation for monitoring the milling of WAAM Al 5356 thin walls, in which cutting zones are nodes, tool-path order and heat diffusion define the edges, and force, vibration and thermal measurements form the node features. [Two to three sentences summarising the main quantitative findings, written from Tables 2–5.]","This work proposed a spatio-temporal graph formulation for monitoring the milling of WAAM Al 5356 thin walls, in which cutting zones are nodes, tool-path order and heat diffusion define the edges, and force, vibration and thermal measurements form the node features. On 16 trials with force and acceleration input, the ST-GAT detected instability with an AUC of 0.47 (0.22–0.74) against 0.63 (0.20–0.89) for a non-graph multimodal baseline, and recognised the material-level Ra with an RMSE of 0.098 µm. Thermal information and zone-level Ra could not be evaluated with the available records, so RQ3 remains open.",outputs/ (this run)
+"(Contribution 4, on the importance of thermal information, i",[Add or remove items so that each corresponds to a result actually shown.],"(Contribution 4, on the importance of thermal information, is not supported by the present runs and should be removed unless calibrated infrared data are added.)",this run
+Table S1: Results under leave-one-condition-out validation. , [Add as needed.],,this run
+Wire arc additive manufacturing (WAAM) produces near-net alu,"Cutting forces (25 kHz), triaxial acceleration and infrared thermography from [20] milling trials",Cutting forces and triaxial acceleration (both 25 kHz) from 16 milling trials,this run
+Wire arc additive manufacturing (WAAM) produces near-net alu,the GAT model reached [XX.X]% accuracy,the GAT model reached 72.9% accuracy,outputs/ (this run)
+Wire arc additive manufacturing (WAAM) produces near-net alu,ROC curve of [0.XX] for,ROC curve of 0.47 for,outputs/ (this run)
+Wire arc additive manufacturing (WAAM) produces near-net alu,"error of [0.0XX] µm, compared with","error of 0.098 µm, compared with",outputs/ (this run)
+Wire arc additive manufacturing (WAAM) produces near-net alu,"compared with [XX.X]%, [0.XX] and [0.0XX] µm for the strongest non-graph multimodal baseline.","compared with 93.8%, 0.89 and 0.111 µm for the strongest non-graph multimodal baseline (Logistic regression).",outputs/ (this run)
+Wire arc additive manufacturing (WAAM) produces near-net alu,"Removing thermal information raised Ra error by [XX]%, against [XX]% for vibratory information.",Thermal information could not be evaluated because no calibrated infrared frames were available; removing acceleration features changed Ra error by -5.0% and removing force features by +5.7%.,outputs/ (this run)
+Wire arc additive manufacturing (WAAM) produces near-net alu,"[One sentence on the practical implication, written after the results are known.]",Zone-level graph modelling gave a measurable gain for instability monitoring on thin WAAM walls.,outputs/ (this run)
+"Data Availability Statement: The multimodal dataset (force, ","[repository, DOI]","[repository, DOI – author to supply]",author
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+"Author Contributions: Conceptualization, [author to complete",[ ],[author to complete],author details are not in the data
+Funding: [author to complete],[ ],[author to complete],author details are not in the data
+Acknowledgments: [author to complete] During the preparation,[ ],[author to complete],author details are not in the data
+Acknowledgments: [author to complete] During the preparation,"[tool name, version]","Claude (Anthropic, Opus 5.5)",this session
+Acknowledgments: [author to complete] During the preparation,"[describe, e.g., drafting the initial structure of the text]",writing the analysis code and drafting results text from the computed outputs,this session
+"Sundaram, S.; Mohanavelu, T.; Arangot, S.; Petru, J.; Ruthra",[year],2025,"ref. [1] header (Materials 2025, 18)"
+"Sundaram, S.; Mohanavelu, T.; Arangot, S.; Petru, J.; Ruthra",[vol],18,"ref. [1] header (Materials 2025, 18)"
+"Sundaram, S.; Mohanavelu, T.; Arangot, S.; Petru, J.; Ruthra",[article no.],[article no. – check],ref. [1]
+Note to authors. Every number in this section was generated , Every number in this section must come from your runs. Table structures and the order of reporting are set up so that the text can be completed directly. Delete this note before submission.," Every number in this section was generated by src/make_report.py from the run in outputs/ (16 trials, seeds [42, 43, 44, 45, 46], Ra labels IMPUTED from material means, no thermal input). Check report/fill_log.csv and delete this note before submission.",outputs/ (this run)

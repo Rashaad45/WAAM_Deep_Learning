@@ -1,0 +1,4 @@
+,,accuracy,accuracy,precision,precision,recall,recall,f1,f1,roc_auc,roc_auc,rmse_um,rmse_um,mae_um,mae_um,r2,r2
+,,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std
+model,variant,,,,,,,,,,,,,,,,
+gcn,roughness_only,,,,,,,,,,,0.074718,0.052209,0.065162,0.050818,0.0,0.0

@@ -1,0 +1,131 @@
+﻿"""
+mapping_evidence.py - evidence on the trial -> cutting-condition / specimen mapping.
+
+Uses ONLY (i) the spindle speed measured from each force spectrum, (ii) the mean cutting-force level
+versus the order of trials inside a speed block, compared with the cutting plan of ref. [1]
+(5 depths 0.50-1.50 mm x 2 speeds per material), and (iii) file provenance and recording times.
+It never assigns a material from signal-level or literature-property differences.
+
+Writes results/trial_mapping.csv and audit/trial_mapping_evidence.md.
+"""
+import numpy as np
+import pandas as pd
+from scipy import stats
+
+from config import DATA_DIR, CACHE_DIR, RESULTS_DIR, PROJECT_DIR
+
+
+def clock(s) -> float:
+    if not isinstance(s, str) or ":" not in s:
+        return np.nan
+    h, m, sec = (int(x) for x in s.split(":"))
+    return h * 3600 + m * 60 + sec
+
+
+def main() -> None:
+    raw = pd.read_csv(DATA_DIR / "reference" / "raw_trial_manifest.csv")
+    man = pd.read_csv(DATA_DIR / "trial_manifest.csv").set_index("trial_id")
+    summ = pd.read_csv(CACHE_DIR / "dataset_summary.csv").set_index("trial_id")
+
+    rows = []
+    for r in raw.itertuples():
+        t = r.trial_id
+        row = dict(trial_id=t, acquisition_date=r.acquisition_date_verified,
+                   accel_start_time=r.acceleration_start_time_verified,
+                   accel_fs_hz=r.acceleration_fs_measured_hz,
+                   material_provenance=("WAAM folder copy (byte-identical)" if str(r.material_type).startswith("WAAM")
+                                        else "none"),
+                   force_file=(str(man.loc[t, "force_csv"]).split("/")[-1] if t in man.index else ""),
+                   force_folder=(str(man.loc[t, "force_csv"]).split("/")[-3] if t in man.index else ""),
+                   force_pairing_confidence=(man.loc[t, "force_pairing_confidence"] if t in man.index else "none"),
+                   nominal_rpm_manifest=(man.loc[t, "spindle_speed_rpm"] if t in man.index else np.nan))
+        if t in summ.index and bool(summ.loc[t, "included"]):
+            s = summ.loc[t]
+            row.update(measured_rpm=s.spindle_rpm_measured, comb_contrast_db=s.spindle_comb_contrast_db,
+                       mean_force_n=s.mean_force_resultant_n, accel_alignment_r=s.accel_alignment_r)
+        elif t in summ.index:
+            row.update(note=summ.loc[t, "exclusion_reason"])
+        rows.append(row)
+    d = pd.DataFrame(rows)
+    d["gap_to_previous_s"] = [np.nan] + [
+        clock(b) - clock(a) if d.acquisition_date[i] == d.acquisition_date[i + 1] else np.nan
+        for i, (a, b) in enumerate(zip(d.accel_start_time[:-1], d.accel_start_time[1:]))]
+    d["speed_class_rpm"] = np.where(d.measured_rpm.isna(), np.nan, np.where(d.measured_rpm < 1250, 1031, 1461))
+    d["nominal_matches_measured"] = np.where(
+        d.measured_rpm.isna(), "n/a",
+        np.where((d.nominal_rpm_manifest < 1200) == (d.measured_rpm < 1250), "yes", "NO"))
+
+    # speed blocks = runs of consecutive trials with the same measured speed class
+    block, prev, k = [], None, 0
+    for v in d.speed_class_rpm:
+        if not np.isnan(v):
+            if v != prev:
+                k += 1
+            prev = v
+            block.append(k)
+        else:
+            block.append(np.nan)
+    d["speed_block"] = block
+    d["specimen_block"] = np.where(d.trial_id <= "trial_11", "A (trials <= 11)", "B (trials >= 12)")
+    d.loc[d.acquisition_date != "2025-03-25", "specimen_block"] = "other session (2025-03-14)"
+    d.to_csv(RESULTS_DIR / "trial_mapping.csv", index=False)
+
+    mono = []
+    for b, g in d.dropna(subset=["speed_block"]).groupby("speed_block"):
+        if len(g) >= 3:
+            rho, p = stats.spearmanr(np.arange(len(g)), g.mean_force_n)
+            mono.append(dict(speed_block=int(b), trials=",".join(g.trial_id.str[-2:]),
+                             speed_rpm=int(g.speed_class_rpm.iloc[0]), n=len(g), spearman_rho=rho, p_value=p))
+        else:
+            mono.append(dict(speed_block=int(b), trials=",".join(g.trial_id.str[-2:]),
+                             speed_rpm=int(g.speed_class_rpm.iloc[0]), n=len(g), spearman_rho=np.nan, p_value=np.nan))
+    mono = pd.DataFrame(mono)
+    mono.to_csv(RESULTS_DIR / "speed_block_force_trend.csv", index=False)
+
+    gaps = d[d.acquisition_date == "2025-03-25"].dropna(subset=["gap_to_previous_s"])
+    big = gaps.sort_values("gap_to_previous_s", ascending=False).head(3)
+    n_mismatch = int((d.nominal_matches_measured == "NO").sum())
+    cols = ["trial_id", "acquisition_date", "accel_start_time", "gap_to_previous_s", "force_folder",
+            "force_pairing_confidence", "nominal_rpm_manifest", "measured_rpm", "nominal_matches_measured",
+            "mean_force_n", "speed_block", "material_provenance"]
+    tab = d[cols].copy()
+    for c in ("measured_rpm", "mean_force_n"):
+        tab[c] = tab[c].round(1)
+    md = ["# Trial-mapping evidence (generated by src/mapping_evidence.py)", "",
+          "Sources used: measured spindle speed (harmonic-comb fit to each force spectrum), the order of the "
+          "mean cutting-force level inside each speed block, recording times and file provenance. "
+          "Material is NEVER inferred from signal-level or literature-property differences.", "",
+          "## Per-trial evidence", "", tab.to_markdown(index=False), "",
+          "## Findings", "",
+          f"1. **Measured spindle speeds fall in two classes**, ~1031 rpm and ~1461 rpm (nominal 1000 / 1400 rpm; "
+          f"the machine runs ~3-4 % fast). The provisional manifest speed disagrees with the measurement for "
+          f"**{n_mismatch} trials** ({', '.join(d[d.nominal_matches_measured == 'NO'].trial_id)}).",
+          "2. **Speed blocks.** Consecutive trials with the same measured speed form blocks: "
+          + "; ".join(f"{r.trials} at {r.speed_rpm} rpm" for r in mono.itertuples()) + ".",
+          "3. **Force rises with trial order inside every block of >= 3 trials** (Spearman rho: "
+          + ", ".join(f"block {r.trials}: {r.spearman_rho:.2f}" for r in mono.dropna().itertuples())
+          + "), as expected if each block runs the planned depths 0.50 -> 1.50 mm in increasing order.",
+          "4. **Recording gaps.** Largest gaps between consecutive recordings on 2025-03-25: "
+          + "; ".join(f"before {r.trial_id}: {r.gap_to_previous_s:.0f} s" for r in big.itertuples())
+          + ". The force files also change folder at trial_12.",
+          "5. **Interpretation (provisional).** Trials 12-16 (1031 rpm) and 17-20 (1461 rpm; trial_21, recorded 92 s after trial_20, has no force file) form one complete "
+          "10-cut plan on one specimen (block B); trials up to 11 belong to another specimen (block A: "
+          "1031 rpm up to trial 06, 1461 rpm for 07-11). The original manifest assumed the boundary between "
+          "trials 10 and 11 and is shifted by one trial.",
+          "6. **Material.** The only file-level material evidence concerns trials 01 and 03 (byte-identical copies in "
+          "the `AM ER5356` folder). Both were recorded on 2025-03-14, a different session from all force records "
+          "(2025-03-25), at a different accelerometer rate, so they do not identify the material of block A or B. "
+          "**No trial with a force record has a confirmed material (0 WAAM, 0 wrought).**", "",
+          "## Consequence for the paper", "",
+          "* Main results do not use material identity, depth of cut or the manifest speed; the measured spindle "
+          "speed is used instead.",
+          "* The material-specific supplementary analysis requires >= 4 confirmed trials per material; with 0 "
+          "confirmed it is **omitted**.",
+          "* The specimen-block grouping (A/B) rests on timing, speed and file provenance only and is reported as "
+          "provisional. The lab log is needed to name the material of each block (TODO_AUTHOR.md)."]
+    (PROJECT_DIR / "audit" / "trial_mapping_evidence.md").write_text("\n".join(md), encoding="utf8")
+    print("\n".join(md))
+
+
+if __name__ == "__main__":
+    main()

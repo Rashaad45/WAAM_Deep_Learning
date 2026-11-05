@@ -1,0 +1,8 @@
+trial_id,material_type,spindle_speed_rpm,depth_of_cut_mm,feature_path
+trial_04,WROUGHT,1000.0,1.25,trial_04_synchronized_windows.npz
+trial_07,WROUGHT,1400.0,0.75,trial_07_synchronized_windows.npz
+trial_08,WROUGHT,1400.0,1.0,trial_08_synchronized_windows.npz
+trial_14,WAAM,1000.0,1.25,trial_14_synchronized_windows.npz
+trial_15,WAAM,1000.0,1.5,trial_15_synchronized_windows.npz
+trial_17,WAAM,1400.0,0.75,trial_17_synchronized_windows.npz
+trial_20,WAAM,1400.0,1.5,trial_20_synchronized_windows.npz

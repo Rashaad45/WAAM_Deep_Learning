@@ -1,0 +1,15 @@
+Final manuscript: C:\Project\Deep Leanring x MP2\deep learning x mp2\waam_gnn_pipeline\report\WAAM_STGNN_Materials_FINAL.docx
+Figures embedded: 9
+Author details applied: none
+
+NOT READY. Still to do:
+  - placeholder [author to supply]  in 'Vibration. Triaxial accelerometer (model...'
+  - placeholder [author to confirm]  in 'Temperature. Infrared records were taken...'
+  - placeholder [repository – author to supply]  in 'Models were implemented in PyTorch 2.6.0...'
+  - placeholder [author to complete] x13  in 'Author Contributions...'
+  - placeholder [author to complete]  in 'Funding...'
+  - placeholder [repository, DOI – author to supply]  in 'Data Availability Statement...'
+  - placeholder [author to complete]  in 'Acknowledgments...'
+  - placeholder [article no. – check]  in 'Sundaram, S.; Mohanavelu, T.; Arangot, S...'
+  - author names / affiliations missing under the title (authors_line in author_info.json)
+  - title still says 'Force, Vibration and Thermal Signals' although thermal data were not used; consider setting 'title' in author_info.json
