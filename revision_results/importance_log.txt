@@ -1,0 +1,10 @@
+﻿logreg seed 42
+logreg seed 43
+logreg seed 44
+logreg seed 45
+logreg seed 46
+rf seed 42
+rf seed 43
+rf seed 44
+rf seed 45
+rf seed 46

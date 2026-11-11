@@ -1,0 +1,4 @@
+layer,z_mm,peak_T,solidification_rate_C_s,cooling_rate_500_300_C_s,time_above_solidus_s,reheat_peak_next_layer,n_remelts_by_later_layers,n_reheats_above_200C,interpass_T_at_next_layer,T_before_own_layer,wall_top_mean_T_at_next_layer,substrate_bottom_T_at_next_layer
+1,28,629.5,899.9,555,0.5695,576.8,0,2,41.38,25,41.37,41.39
+2,31,833,301,312.8,0.8702,606.3,0,1,56.05,25,56.03,56.1
+3,34,899.5,176.9,198.3,1.172,,0,0,,25,,

@@ -1,0 +1,25 @@
+Analysis initiated from SIMULIA established products
+Abaqus JOB final
+Abaqus 2024
+Abaqus License Manager checked out the following licenses:
+Abaqus/Standard checked out 8 tokens from Flexnet server localhost.
+<9985 out of 9999 licenses remain available>.
+Begin Analysis Input File Processor
+11/1/2026 10:11:58 PM
+Run pre.exe
+11/1/2026 10:13:17 PM
+End Analysis Input File Processor
+Begin Abaqus/Standard Analysis
+11/1/2026 10:13:17 PM
+Run standard.exe
+Sun 01 Nov 2026 10:25:49 PM India Standard Time: Terminate request received from Rashaad Rowther on RASHBRO
+ReadFile from pipe failed 2226 109
+11/1/2026 10:26:00 PM
+Abaqus Error: Abaqus/Standard Analysis exited with an error - Please see the 
+message file for possible error messages if the file exists.
+Begin SIM Wrap-up
+11/1/2026 10:26:00 PM
+Run SMASimUtility.exe
+11/1/2026 10:26:00 PM
+End SIM Wrap-up
+Abaqus/Analysis exited with errors

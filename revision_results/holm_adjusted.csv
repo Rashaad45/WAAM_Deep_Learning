@@ -1,0 +1,81 @@
+item,p_raw,p_source,p_holm,family,family_size,delta_auc,significant_raw_0.05,significant_holm_0.05
+logreg,0.0274862568715642,"results/metrics.csv perm_p_auc (manuscript Table 3, zone-level null)",0.1099450274862568,"(i) Table 3, zone-level permutation (manuscript p)",9,,True,False
+rf,0.0019990004997501,"results/metrics.csv perm_p_auc (manuscript Table 3, zone-level null)",0.0179910044977509,"(i) Table 3, zone-level permutation (manuscript p)",9,,True,True
+svm,0.0794602698650674,"results/metrics.csv perm_p_auc (manuscript Table 3, zone-level null)",0.1589205397301348,"(i) Table 3, zone-level permutation (manuscript p)",9,,False,False
+cnn1d,0.4787606196901549,"results/metrics.csv perm_p_auc (manuscript Table 3, zone-level null)",0.4787606196901549,"(i) Table 3, zone-level permutation (manuscript p)",9,,False,False
+bilstm,0.0069965017491254,"results/metrics.csv perm_p_auc (manuscript Table 3, zone-level null)",0.0559720139930032,"(i) Table 3, zone-level permutation (manuscript p)",9,,True,False
+fusion_mlp,0.0119940029985007,"results/metrics.csv perm_p_auc (manuscript Table 3, zone-level null)",0.0719640179910042,"(i) Table 3, zone-level permutation (manuscript p)",9,,True,False
+small_gnn,0.0079960019990005,"results/metrics.csv perm_p_auc (manuscript Table 3, zone-level null)",0.0559720139930035,"(i) Table 3, zone-level permutation (manuscript p)",9,,True,False
+gcn,0.0139930034982508,"results/metrics.csv perm_p_auc (manuscript Table 3, zone-level null)",0.0719640179910042,"(i) Table 3, zone-level permutation (manuscript p)",9,,True,False
+gat,0.0314842578710644,"results/metrics.csv perm_p_auc (manuscript Table 3, zone-level null)",0.1099450274862568,"(i) Table 3, zone-level permutation (manuscript p)",9,,True,False
+logreg,0.0264867566216891,permutation_cluster.csv zone_level p_two_sided,0.1059470264867564,"(i) Table 3, zone-level permutation (recomputed this run, rng 0)",9,,True,False
+rf,0.0044977511244377,permutation_cluster.csv zone_level p_two_sided,0.0404797601199393,"(i) Table 3, zone-level permutation (recomputed this run, rng 0)",9,,True,True
+svm,0.0844577711144427,permutation_cluster.csv zone_level p_two_sided,0.1689155422288854,"(i) Table 3, zone-level permutation (recomputed this run, rng 0)",9,,False,False
+cnn1d,0.4852573713143428,permutation_cluster.csv zone_level p_two_sided,0.4852573713143428,"(i) Table 3, zone-level permutation (recomputed this run, rng 0)",9,,False,False
+bilstm,0.0099950024987506,permutation_cluster.csv zone_level p_two_sided,0.0799600199900048,"(i) Table 3, zone-level permutation (recomputed this run, rng 0)",9,,True,False
+fusion_mlp,0.016991504247876,permutation_cluster.csv zone_level p_two_sided,0.098950524737631,"(i) Table 3, zone-level permutation (recomputed this run, rng 0)",9,,True,False
+small_gnn,0.0109945027486256,permutation_cluster.csv zone_level p_two_sided,0.0799600199900048,"(i) Table 3, zone-level permutation (recomputed this run, rng 0)",9,,True,False
+gcn,0.0164917541229385,permutation_cluster.csv zone_level p_two_sided,0.098950524737631,"(i) Table 3, zone-level permutation (recomputed this run, rng 0)",9,,True,False
+gat,0.0289855072463768,permutation_cluster.csv zone_level p_two_sided,0.1059470264867564,"(i) Table 3, zone-level permutation (recomputed this run, rng 0)",9,,True,False
+logreg,0.0739630184907546,permutation_cluster.csv trial_block p_two_sided,0.3288355822088953,"(i) Table 3, trial-block permutation (this run)",9,,False,False
+rf,0.0229885057471264,permutation_cluster.csv trial_block p_two_sided,0.1934032983508242,"(i) Table 3, trial-block permutation (this run)",9,,True,False
+svm,0.1834082958520739,permutation_cluster.csv trial_block p_two_sided,0.3668165917041478,"(i) Table 3, trial-block permutation (this run)",9,,False,False
+cnn1d,0.5897051474262869,permutation_cluster.csv trial_block p_two_sided,0.5897051474262869,"(i) Table 3, trial-block permutation (this run)",9,,False,False
+bilstm,0.0214892553723138,permutation_cluster.csv trial_block p_two_sided,0.1934032983508242,"(i) Table 3, trial-block permutation (this run)",9,,True,False
+fusion_mlp,0.0469765117441279,permutation_cluster.csv trial_block p_two_sided,0.3288355822088953,"(i) Table 3, trial-block permutation (this run)",9,,True,False
+small_gnn,0.0499750124937531,permutation_cluster.csv trial_block p_two_sided,0.3288355822088953,"(i) Table 3, trial-block permutation (this run)",9,,True,False
+gcn,0.0534732633683158,permutation_cluster.csv trial_block p_two_sided,0.3288355822088953,"(i) Table 3, trial-block permutation (this run)",9,,False,False
+gat,0.0719640179910044,permutation_cluster.csv trial_block p_two_sided,0.3288355822088953,"(i) Table 3, trial-block permutation (this run)",9,,False,False
+rf:full − logreg:full (main_15db),0.4372813593203398,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,0.0504347826086956,False,False
+svm:full − logreg:full (main_15db),0.5962018990504747,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,-0.0434782608695653,False,False
+cnn1d:full − logreg:full (main_15db),0.0614692653673163,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,-0.2539130434782609,False,False
+bilstm:full − logreg:full (main_15db),0.6136931534232883,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,0.0365217391304347,False,False
+fusion_mlp:full − logreg:full (main_15db),0.7651174412793603,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,0.0156521739130434,False,False
+small_gnn:full − logreg:full (main_15db),0.6421789105447276,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,0.0243478260869565,False,False
+gcn:full − logreg:full (main_15db),0.8465767116441779,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,0.0104347826086955,False,False
+gat:full − logreg:full (main_15db),0.9500249875062468,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,-0.0034782608695652,False,False
+gat:full − gat:no_edges (ablation_15db),0.7211394302848576,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,0.0121739130434782,False,False
+gcn:full − gcn:no_edges (ablation_15db),0.6416791604197901,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,0.0156521739130434,False,False
+small_gnn:full − small_gnn:no_edges (ablation_15db),0.8655672163918041,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,-0.0069565217391304,False,False
+gat:full − gat:no_force (ablation_15db),0.2768615692153923,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,0.0556521739130434,False,False
+gat:full − gat:no_acceleration (ablation_15db),0.2128935532233883,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,-0.0591304347826087,False,False
+logreg:full − logreg:no_force (ablation_15db),0.5697151424287856,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,-0.0226086956521738,False,False
+logreg:full − logreg:no_acceleration (ablation_15db),0.0714642678660669,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,-0.0817391304347825,False,False
+gat:full − fusion_mlp:full (main_15db),0.5187406296851574,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,-0.0191304347826086,False,False
+gcn:full − fusion_mlp:full (main_15db),0.8835582208895553,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,-0.0052173913043478,False,False
+small_gnn:full − fusion_mlp:full (main_15db),0.9120439780109943,results/paired_tests.csv perm_p (manuscript Table 4),1.0,"(ii) Table 4, 18 paired comparisons",18,0.0086956521739131,False,False
+logreg: F1 − F0,0.5782108945527237,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, logreg",8,0.0121739130434782,False,False
+logreg: F2 − F0,0.3498250874562719,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, logreg",8,-0.0226086956521739,False,False
+logreg: F3 − F0,0.5317341329335332,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, logreg",8,0.0417391304347826,False,False
+logreg: F4 − F0,0.8570714642678661,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, logreg",8,0.0086956521739129,False,False
+logreg: F5 − F0,0.9470264867566216,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, logreg",8,0.0034782608695651,False,False
+logreg: F6 − F0,0.0784607696151924,ablation_features_paired.csv paired_perm_p,0.6276861569215392,"(iii) Step 1 ablation vs F0, logreg",8,0.0817391304347825,False,False
+logreg: F7 − F0,0.5822088955522239,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, logreg",8,0.0226086956521738,False,False
+logreg: F8 − F0,0.3498250874562719,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, logreg",8,0.0521739130434781,False,False
+rf: F1 − F0,0.1554222888555722,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, rf",8,0.0104347826086956,False,False
+rf: F2 − F0,0.4117941029485257,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, rf",8,-0.0191304347826086,False,False
+rf: F3 − F0,0.9685157421289357,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, rf",8,0.0017391304347825,False,False
+rf: F4 − F0,0.862568715642179,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, rf",8,0.0034782608695652,False,False
+rf: F5 − F0,0.6121939030484758,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, rf",8,0.0086956521739129,False,False
+rf: F6 − F0,0.8105947026486756,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, rf",8,0.0139130434782608,False,False
+rf: F7 − F0,0.0674662668665667,ablation_features_paired.csv paired_perm_p,0.5397301349325336,"(iii) Step 1 ablation vs F0, rf",8,-0.0617391304347826,False,False
+rf: F8 − F0,0.2183908045977011,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, rf",8,-0.0365217391304347,False,False
+svm: F1 − F0,0.4332833583208396,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, svm",8,-0.017391304347826,False,False
+svm: F2 − F0,0.0314842578710644,ablation_features_paired.csv paired_perm_p,0.2518740629685152,"(iii) Step 1 ablation vs F0, svm",8,-0.0191304347826086,True,False
+svm: F3 − F0,0.7531234382808596,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, svm",8,0.0104347826086956,False,False
+svm: F4 − F0,0.8295852073963018,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, svm",8,-0.0052173913043478,False,False
+svm: F5 − F0,0.3943028485757121,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, svm",8,-0.034782608695652,False,False
+svm: F6 − F0,0.63968015992004,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, svm",8,0.0156521739130435,False,False
+svm: F7 − F0,0.3728135932033983,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, svm",8,-0.0295652173913043,False,False
+svm: F8 − F0,0.1079460269865067,ablation_features_paired.csv paired_perm_p,0.7556221889055469,"(iii) Step 1 ablation vs F0, svm",8,-0.0417391304347826,False,False
+bilstm: F1 − F0,0.8985507246376812,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, bilstm",3,0.0052173913043478,False,False
+bilstm: F2 − F0,0.2403798100949525,ablation_features_paired.csv paired_perm_p,0.7211394302848575,"(iii) Step 1 ablation vs F0, bilstm",3,-0.04,False,False
+bilstm: F3 − F0,0.5717141429285357,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, bilstm",3,-0.0295652173913043,False,False
+fusion_mlp: F1 − F0,0.872063968015992,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, fusion_mlp",3,0.0034782608695652,False,False
+fusion_mlp: F2 − F0,0.0314842578710644,ablation_features_paired.csv paired_perm_p,0.09445277361319321,"(iii) Step 1 ablation vs F0, fusion_mlp",3,-0.0521739130434782,True,False
+fusion_mlp: F3 − F0,0.7386306846576711,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, fusion_mlp",3,0.0226086956521739,False,False
+small_gnn: F1 − F0,0.0654672663668165,ablation_features_paired.csv paired_perm_p,0.0654672663668165,"(iii) Step 1 ablation vs F0, small_gnn",1,0.0156521739130434,False,False
+gcn: F1 − F0,0.4462768615692153,ablation_features_paired.csv paired_perm_p,0.4462768615692153,"(iii) Step 1 ablation vs F0, gcn",1,-0.0208695652173912,False,False
+gat: F1 − F0,0.9080459770114944,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, gat",3,-0.0034782608695652,False,False
+gat: F2 − F0,0.0709645177411294,ablation_features_paired.csv paired_perm_p,0.2128935532233882,"(iii) Step 1 ablation vs F0, gat",3,-0.0747826086956521,False,False
+gat: F3 − F0,1.0,ablation_features_paired.csv paired_perm_p,1.0,"(iii) Step 1 ablation vs F0, gat",3,0.0,False,False

@@ -1,0 +1,12 @@
+﻿10 jobs for [('small_gnn', 'F1'), ('gcn', 'F1')]
+[1/10] ('small_gnn', 'F1', 44) 70s  (wall 1.5 min)
+[2/10] ('small_gnn', 'F1', 42) 70s  (wall 1.5 min)
+[3/10] ('small_gnn', 'F1', 46) 70s  (wall 1.5 min)
+[4/10] ('small_gnn', 'F1', 43) 70s  (wall 1.5 min)
+[5/10] ('small_gnn', 'F1', 45) 71s  (wall 1.5 min)
+[6/10] ('gcn', 'F1', 42) 582s  (wall 10.0 min)
+[7/10] ('gcn', 'F1', 44) 582s  (wall 10.0 min)
+[8/10] ('gcn', 'F1', 46) 583s  (wall 10.0 min)
+[9/10] ('gcn', 'F1', 43) 584s  (wall 10.0 min)
+[10/10] ('gcn', 'F1', 45) 584s  (wall 10.0 min)
+done in 10.2 min

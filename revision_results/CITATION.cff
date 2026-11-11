@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite it as below."
+title: "TITLE"
+type: dataset
+authors:
+  - family-names: "Rowther"
+    given-names: "Rashaad Sabir"
+    affiliation: "AFFILIATION"
+  - family-names: "COAUTHOR_SURNAME"
+    given-names: "COAUTHOR_GIVEN"
+    affiliation: "AFFILIATION"
+license: CC-BY-4.0
+license-url: "https://creativecommons.org/licenses/by/4.0/"
+version: "revision-2026-11-10"
+date-released: "2026-11-10"
+doi: "10.5281/zenodo.PLACEHOLDER"
+keywords:
+  - chatter detection
+  - thin-wall milling
+  - WAAM
+  - small data
+notes: "Source code is licensed MIT; data, results and figures are CC-BY-4.0."

@@ -1,0 +1,16 @@
+{
+  "title": "TITLE",
+  "upload_type": "dataset",
+  "description": "Code, processed data, out-of-fold predictions and analysis outputs for a leakage-free small-data benchmark of force/vibration chatter detection in thin-wall milling of WAAM ER5356 and wrought AA 5052 walls. Code is MIT-licensed; data and results are CC-BY-4.0.",
+  "creators": [
+    {"name": "Rowther, Rashaad Sabir", "affiliation": "AFFILIATION"},
+    {"name": "COAUTHOR_SURNAME, COAUTHOR_GIVEN", "affiliation": "AFFILIATION"}
+  ],
+  "license": "cc-by-4.0",
+  "keywords": ["chatter detection", "thin-wall milling", "wire arc additive manufacturing", "small data", "leave-one-trial-out", "graph neural networks"],
+  "notes": "License: data and results CC-BY-4.0; source code MIT (see LICENSE files).",
+  "related_identifiers": [
+    {"identifier": "10.3390/ma19122653", "relation": "isSupplementTo", "scheme": "doi"}
+  ],
+  "access_right": "open"
+}

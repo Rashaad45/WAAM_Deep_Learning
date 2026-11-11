@@ -60,3 +60,22 @@ external/_quarantine/
 /WAAM/RESULTS-20260817T081727Z-1-003/RESULTS/DATA/FORCE DATA/25.03.25.02/25.03.25.02/1_008_1.csv
 /WAAM/RESULTS-20260817T081727Z-1-003/RESULTS/DATA/VIBRATION DATA/AM ER5356/ACCELEROMETER/TRIAL 1/trial 1.csv
 /WAAM/RESULTS-20260817T081727Z-1-003/RESULTS/DATA/VIBRATION DATA/Vibration data 25.03.2025/trial 1.csv
+
+# Abaqus solver output
+*.odb
+*.msg
+*.stt
+*.mdl
+*.prt
+*.res
+*.sim
+*.sta
+*.lck
+*.ipm
+*.com
+*.abq
+*.pac
+*.sel
+*.fil
+*.023
+*.log

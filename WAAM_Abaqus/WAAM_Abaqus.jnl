@@ -1,0 +1,1406 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=0.1)
+mdb.models['Model-1'].sketches['__profile__'].sketchOptions.setValues(
+    decimalPlaces=3)
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-0.02, 0.008), 
+    point2=(0.03, 0.002))
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.022889781743288, 0.00464168004691601), value=0.006, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.0148956123739481, -0.000547775998711586), value=0.05, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[2])
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='substrate', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['substrate'].BaseSolidExtrude(depth=0.12, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=0.05)
+mdb.models['Model-1'].sketches['__profile__'].sketchOptions.setValues(
+    decimalPlaces=3)
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-0.003, 0.003), 
+    point2=(0.004, 0.001))
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.00460096076130867, 0.00203253608196974), value=0.002, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.00112148374319077, -0.000187397934496403), value=0.007, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[2])
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='layer', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['layer'].BaseSolidExtrude(depth=0.04, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['layer'].PartitionCellByPlaneThreePoints(cells=
+    mdb.models['Model-1'].parts['layer'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), point1=mdb.models['Model-1'].parts['layer'].InterestingPoint(
+    mdb.models['Model-1'].parts['layer'].edges[1], MIDDLE), point2=
+    mdb.models['Model-1'].parts['layer'].InterestingPoint(
+    mdb.models['Model-1'].parts['layer'].edges[3], MIDDLE), point3=
+    mdb.models['Model-1'].parts['layer'].InterestingPoint(
+    mdb.models['Model-1'].parts['layer'].edges[8], MIDDLE))
+mdb.models['Model-1'].parts['layer'].PartitionCellByPlaneThreePoints(cells=
+    mdb.models['Model-1'].parts['layer'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), point1=mdb.models['Model-1'].parts['layer'].InterestingPoint(
+    mdb.models['Model-1'].parts['layer'].edges[10], MIDDLE), point2=
+    mdb.models['Model-1'].parts['layer'].InterestingPoint(
+    mdb.models['Model-1'].parts['layer'].edges[14], MIDDLE), point3=
+    mdb.models['Model-1'].parts['layer'].InterestingPoint(
+    mdb.models['Model-1'].parts['layer'].edges[9], MIDDLE))
+mdb.models['Model-1'].parts['layer'].PartitionCellByPlaneThreePoints(cells=
+    mdb.models['Model-1'].parts['layer'].cells.getSequenceFromMask(('[#4 ]', ), 
+    ), point1=mdb.models['Model-1'].parts['layer'].InterestingPoint(
+    mdb.models['Model-1'].parts['layer'].edges[22], MIDDLE), point2=
+    mdb.models['Model-1'].parts['layer'].InterestingPoint(
+    mdb.models['Model-1'].parts['layer'].edges[16], MIDDLE), point3=
+    mdb.models['Model-1'].parts['layer'].InterestingPoint(
+    mdb.models['Model-1'].parts['layer'].edges[18], MIDDLE))
+mdb.models['Model-1'].Material(name='In738')
+mdb.models['Model-1'].materials['In738'].Density(table=((8110.0, ), ))
+mdb.models['Model-1'].materials['In738'].Conductivity(table=((14.05, 22.67), (
+    14.053, 94.77), (11.842, 204.65), (13.737, 316.28), (15.605, 426.74), (
+    17.737, 537.79), (19.737, 647.67), (21.553, 758.14), (23.368, 868.6), (
+    25.474, 980.23), (27.263, 1089.53), (28.132, 1097.09), (29.079, 1116.86), (
+    30.184, 1136.63), (31.421, 1195.26), (32.237, 1236.63), (32.868, 1295.35), 
+    (31.395, 1315.7), (30.123, 1323.26), (29.026, 1334.88), (29.053, 1355.81)), 
+    temperatureDependency=ON)
+mdb.models['Model-1'].materials['In738'].SpecificHeat(table=((417.441, 21.05), 
+    (460.465, 92.4), (501.162, 203.51), (522.09, 315.79), (544.16, 426.9), (
+    563.95, 536.84), (584.88, 649.12), (626.74, 760.23), (668.604, 870.18), (
+    710.465, 982.46), (710.465, 1092.4), (660.465, 1259.65), (704.65, 1339.0)), 
+    temperatureDependency=ON)
+mdb.models['Model-1'].Material(name='steel')
+mdb.models['Model-1'].materials['steel'].Density(table=((7820.0, ), ))
+mdb.models['Model-1'].materials['steel'].Conductivity(table=((46.04, 13.4), (
+    45.94, 93.8), (45.05, 201.0), (42.97, 290.0), (41.09, 397.0), (38.12, 
+    496.0), (34.95, 603.0), (28.91, 701.0), (24.06, 795.0), (31.98, 1500.0), (
+    31.98, 2500.0), (31.98, 5004.46)), temperatureDependency=ON)
+mdb.models['Model-1'].materials['steel'].SpecificHeat(table=((581.03, 294.39), 
+    (610.344, 397.2), (653.44, 495.33), (712.06, 598.13), (789.65, 691.59), (
+    865.51, 794.39), (565.517, 892.52), (629.31, 1425.23), (706.89, 2495.33), (
+    708.62, 2995.33), (706.89, 4990.65)), temperatureDependency=ON)
+# Save by Rashaad Rowther on 2026_10_15-02.03.49; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_15-02.03.53; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_15-02.03.53; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_15-02.03.54; build 2024 2023_09_21-18.25.25 RELr426 190762
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].HomogeneousSolidSection(material='steel', name=
+    'substrate', thickness=None)
+mdb.models['Model-1'].parts['substrate'].Set(cells=
+    mdb.models['Model-1'].parts['substrate'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), name='Set-1')
+mdb.models['Model-1'].parts['substrate'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['substrate'].sets['Set-1'], sectionName=
+    'substrate', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].HomogeneousSolidSection(material='In738', name='layer', 
+    thickness=None)
+mdb.models['Model-1'].parts['layer'].Set(cells=
+    mdb.models['Model-1'].parts['layer'].cells.getSequenceFromMask(('[#f ]', ), 
+    ), name='Set-1')
+mdb.models['Model-1'].parts['layer'].SectionAssignment(offset=0.0, offsetField=
+    '', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['layer'].sets['Set-1'], sectionName='layer', 
+    thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='substrate-1', 
+    part=mdb.models['Model-1'].parts['substrate'])
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('substrate-1', ), 
+    vector=(0.02, -0.002, 0.0))
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='layer-1', part=
+    mdb.models['Model-1'].parts['layer'])
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('layer-1', ), 
+    vector=(0.0245, 0.005, 0.08))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('layer-1', ), 
+    vector=(-0.0005, -0.001, -0.05))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('layer-1', ), 
+    vector=(0.0005, 0.001, 0.05))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('layer-1', ), 
+    vector=(-0.0005, -0.001, -0.04))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('layer-1', ), 
+    vector=(0.0, 0.001, 0.0))
+mdb.models['Model-1'].ConstrainedSketch(gridSpacing=0.006, name='__profile__', 
+    sheetSize=0.26, transform=
+    mdb.models['Model-1'].parts['substrate'].MakeSketchTransform(
+    sketchPlane=mdb.models['Model-1'].parts['substrate'].faces[4], 
+    sketchPlaneSide=SIDE1, 
+    sketchUpEdge=mdb.models['Model-1'].parts['substrate'].edges[0], 
+    sketchOrientation=RIGHT, origin=(0.005, 0.005, 0.12)))
+mdb.models['Model-1'].sketches['__profile__'].sketchOptions.setValues(
+    decimalPlaces=3)
+mdb.models['Model-1'].parts['substrate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__profile__'])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-0.006, 0.003), 
+    point2=(-0.006, -0.00300000001303852))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[5], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.006, 0.003), 
+    point2=(0.006, -0.00300000001303852))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[7], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].DistanceDimension(entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2], textPoint=(
+    -0.000557661168277264, -0.00707639764994383), value=0.05)
+mdb.models['Model-1'].sketches['__profile__'].DistanceDimension(entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], textPoint=(
+    -7.96654447913171e-05, 0.00599999062716961), value=0.007)
+mdb.models['Model-1'].sketches['__profile__'].DistanceDimension(entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], textPoint=(
+    -0.00991843465715647, 0.00584052212536335), value=0.0215)
+mdb.models['Model-1'].sketches['__profile__'].delete(objectList=(
+    mdb.models['Model-1'].sketches['__profile__'].dimensions[0], ))
+mdb.models['Model-1'].parts['substrate'].PartitionFaceBySketch(faces=
+    mdb.models['Model-1'].parts['substrate'].faces.getSequenceFromMask((
+    '[#10 ]', ), ), sketch=mdb.models['Model-1'].sketches['__profile__'], 
+    sketchUpEdge=mdb.models['Model-1'].parts['substrate'].edges[0])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['substrate'].PartitionCellBySweepEdge(cells=
+    mdb.models['Model-1'].parts['substrate'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), edges=(mdb.models['Model-1'].parts['substrate'].edges[0], ), 
+    sweepPath=mdb.models['Model-1'].parts['substrate'].edges[10])
+mdb.models['Model-1'].parts['substrate'].PartitionCellBySweepEdge(cells=
+    mdb.models['Model-1'].parts['substrate'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), edges=(mdb.models['Model-1'].parts['substrate'].edges[15], )
+    , sweepPath=mdb.models['Model-1'].parts['substrate'].edges[19])
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('layer-1', ), 
+    vector=(0.0005, 0.0, 0.04))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('layer-1', ), 
+    vector=(0.0, 0.0, -0.06))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('layer-1', ), 
+    vector=(0.0, 0.0, 0.06))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('layer-1', ), 
+    vector=(0.0, 0.0, -0.04))
+mdb.models['Model-1'].parts['layer'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['layer'].edges.getSequenceFromMask((
+    '[#ffffffff #f ]', ), ), number=4)
+mdb.models['Model-1'].parts['layer'].generateMesh()
+mdb.models['Model-1'].parts['substrate'].seedEdgeByNumber(constraint=FINER, 
+    edges=mdb.models['Model-1'].parts['substrate'].edges.getSequenceFromMask((
+    '[#c20490a ]', ), ), number=48)
+mdb.models['Model-1'].parts['substrate'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].parts['substrate'].deleteMesh()
+mdb.models['Model-1'].parts['substrate'].seedEdgeByBias(biasMethod=SINGLE, 
+    constraint=FINER, end1Edges=
+    mdb.models['Model-1'].parts['substrate'].edges.getSequenceFromMask((
+    '[#120440 ]', ), ), end2Edges=
+    mdb.models['Model-1'].parts['substrate'].edges.getSequenceFromMask((
+    '[#1408010 ]', ), ), number=48, ratio=5.0)
+mdb.models['Model-1'].parts['substrate'].seedEdgeByBias(biasMethod=SINGLE, 
+    constraint=FINER, end1Edges=
+    mdb.models['Model-1'].parts['substrate'].edges.getSequenceFromMask((
+    '[#120440 ]', ), ), end2Edges=
+    mdb.models['Model-1'].parts['substrate'].edges.getSequenceFromMask((
+    '[#1408010 ]', ), ), number=5, ratio=5.0)
+mdb.models['Model-1'].parts['substrate'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].parts['layer'].Set(elements=
+    mdb.models['Model-1'].parts['layer'].elements.getSequenceFromMask(mask=(
+    '[#0:4 #ffffffff:2 ]', ), ), name='set_1')
+mdb.models['Model-1'].parts['layer'].Set(elements=
+    mdb.models['Model-1'].parts['layer'].elements.getSequenceFromMask(mask=(
+    '[#0:2 #ffffffff:2 ]', ), ), name='set_2')
+mdb.models['Model-1'].parts['layer'].Set(elements=
+    mdb.models['Model-1'].parts['layer'].elements.getSequenceFromMask(mask=(
+    '[#0:6 #ffffffff:2 ]', ), ), name='set_3')
+mdb.models['Model-1'].parts['layer'].Set(elements=
+    mdb.models['Model-1'].parts['layer'].elements.getSequenceFromMask(mask=(
+    '[#ffffffff:2 ]', ), ), name='set_4')
+mdb.models['Model-1'].parts['layer'].Set(elements=
+    mdb.models['Model-1'].parts['layer'].elements.getSequenceFromMask(mask=(
+    '[#ffffffff:2 ]', ), ), name='set_4')
+mdb.models['Model-1'].parts['layer'].Set(elements=
+    mdb.models['Model-1'].parts['layer'].elements.getSequenceFromMask(mask=(
+    '[#ffffffff:8 ]', ), ), name='layer')
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].HeatTransferStep(deltmx=350.0, initialInc=0.01, maxInc=
+    0.1, minInc=1e-20, name='death', previous='Initial', timePeriod=0.1)
+mdb.models['Model-1'].HeatTransferStep(deltmx=350.0, initialInc=0.01, maxInc=
+    2.5, maxNumInc=1000, minInc=1e-20, name='Step-2', previous='death', 
+    timePeriod=5.0)
+mdb.models['Model-1'].HeatTransferStep(deltmx=350.0, initialInc=0.01, maxInc=
+    2.5, maxNumInc=1000, minInc=1e-20, name='Step-3', previous='Step-2', 
+    timePeriod=5.0)
+mdb.models['Model-1'].HeatTransferStep(deltmx=350.0, initialInc=0.01, maxInc=
+    2.5, maxNumInc=1000, minInc=1e-20, name='Step-4', previous='Step-3', 
+    timePeriod=5.0)
+mdb.models['Model-1'].HeatTransferStep(deltmx=350.0, initialInc=0.01, maxInc=
+    2.5, maxNumInc=1000, minInc=1e-20, name='Step-5', previous='Step-4', 
+    timePeriod=5.0)
+mdb.models['Model-1'].ModelChange(activeInStep=False, createStepName='death', 
+    includeStrain=False, name='Int-1', region=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].sets['layer'], 
+    regionType=ELEMENTS)
+mdb.models['Model-1'].ModelChange(activeInStep=True, createStepName='Step-2', 
+    includeStrain=False, name='Int-2', region=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].sets['set_1'], 
+    regionType=ELEMENTS)
+mdb.models['Model-1'].ModelChange(activeInStep=True, createStepName='Step-3', 
+    includeStrain=False, name='Int-3', region=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].sets['set_2'], 
+    regionType=ELEMENTS)
+mdb.models['Model-1'].ModelChange(activeInStep=True, createStepName='Step-4', 
+    includeStrain=False, name='Int-4', region=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].sets['set_3'], 
+    regionType=ELEMENTS)
+mdb.models['Model-1'].ModelChange(activeInStep=True, createStepName='Step-5', 
+    includeStrain=False, name='Int-5', region=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].sets['set_4'], 
+    regionType=ELEMENTS)
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-1', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['substrate-1'].faces.getSequenceFromMask(
+    ('[#f7a6 ]', ), ))
+mdb.models['Model-1'].FilmCondition(createStepName='Step-5', definition=
+    EMBEDDED_COEFF, filmCoeff=10.0, filmCoeffAmplitude='', name=
+    'Surface_film_Steel', sinkAmplitude='', sinkDistributionType=UNIFORM, 
+    sinkFieldName='', sinkTemperature=25.0, surface=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-1'])
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-2', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].faces.getSequenceFromMask(
+    ('[#1ffbde ]', ), ))
+mdb.models['Model-1'].FilmCondition(createStepName='Step-5', definition=
+    EMBEDDED_COEFF, filmCoeff=242.0, filmCoeffAmplitude='', name=
+    'surface_film_inconil', sinkAmplitude='', sinkDistributionType=UNIFORM, 
+    sinkFieldName='', sinkTemperature=25.0, surface=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-2'])
+mdb.models['Model-1'].setValues(absoluteZero=-273.15, stefanBoltzmann=5.67e-08)
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-3', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['substrate-1'].faces.getSequenceFromMask(
+    mask=('[#f7a6 ]', ), )+\
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].faces.getSequenceFromMask(
+    mask=('[#1ffbde ]', ), ))
+mdb.models['Model-1'].RadiationToAmbient(ambientTemperature=20.0, 
+    ambientTemperatureAmp='', createStepName='Step-5', distributionType=UNIFORM
+    , emissivity=0.7, field='', name='surface radiation', radiationType=AMBIENT
+    , surface=mdb.models['Model-1'].rootAssembly.surfaces['Surf-3'])
+mdb.models['Model-1'].rootAssembly.DatumPointByMidPoint(point1=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].InterestingPoint(
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].edges[24], MIDDLE), 
+    point2=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].InterestingPoint(
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].edges[15], MIDDLE))
+mdb.models['Model-1'].rootAssembly.DatumPointByMidPoint(point1=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].InterestingPoint(
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].edges[15], MIDDLE), 
+    point2=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].InterestingPoint(
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].edges[27], MIDDLE))
+mdb.models['Model-1'].rootAssembly.DatumPointByMidPoint(point1=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].InterestingPoint(
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].edges[27], MIDDLE), 
+    point2=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].InterestingPoint(
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].edges[1], MIDDLE))
+mdb.models['Model-1'].rootAssembly.DatumPointByMidPoint(point1=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].InterestingPoint(
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].edges[1], MIDDLE), 
+    point2=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].InterestingPoint(
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].edges[13], MIDDLE))
+mdb.models['Model-1'].rootAssembly.DatumCsysByThreePoints(coordSysType=
+    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name=
+    'Datum csys-2', origin=mdb.models['Model-1'].rootAssembly.datums[9])
+mdb.models['Model-1'].rootAssembly.DatumCsysByThreePoints(coordSysType=
+    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name=
+    'Datum csys-3', origin=mdb.models['Model-1'].rootAssembly.datums[10])
+mdb.models['Model-1'].rootAssembly.DatumCsysByThreePoints(coordSysType=
+    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name=
+    'Datum csys-4', origin=mdb.models['Model-1'].rootAssembly.datums[11])
+mdb.models['Model-1'].rootAssembly.DatumCsysByThreePoints(coordSysType=
+    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name=
+    'Datum csys-5', origin=mdb.models['Model-1'].rootAssembly.datums[12])
+mdb.models['Model-1'].ExpressionField(description='', expression=
+    'pow(e,((-3)*((pow(Z,2))+pow(X,2))/0.00002809))', localCsys=
+    mdb.models['Model-1'].rootAssembly.datums[13], name='AnalyticalField-1')
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-4', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].faces.getSequenceFromMask(
+    ('[#100 ]', ), ))
+mdb.models['Model-1'].SurfaceHeatFlux(createStepName='Step-2', 
+    distributionType=FIELD, field='AnalyticalField-1', magnitude=12493300.0, 
+    name='Load-1', region=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-4'])
+mdb.models['Model-1'].ExpressionField(description='', expression=
+    'pow(e,((-3)*((pow(Z,2))+pow(X,2))/0.00002809))', localCsys=
+    mdb.models['Model-1'].rootAssembly.datums[14], name='AnalyticalField-2')
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-5', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].faces.getSequenceFromMask(
+    ('[#40000 ]', ), ))
+mdb.models['Model-1'].SurfaceHeatFlux(createStepName='Step-3', 
+    distributionType=FIELD, field='AnalyticalField-2', magnitude=12493300.0, 
+    name='Load-2', region=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-5'])
+mdb.models['Model-1'].ExpressionField(description='', expression=
+    'pow(e,((-3)*((pow(Z,2))+pow(X,2))/0.00002809))', localCsys=
+    mdb.models['Model-1'].rootAssembly.datums[15], name='AnalyticalField-3')
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-6', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].faces.getSequenceFromMask(
+    ('[#800 ]', ), ))
+mdb.models['Model-1'].SurfaceHeatFlux(createStepName='Step-4', 
+    distributionType=FIELD, field='AnalyticalField-3', magnitude=12493300.0, 
+    name='Load-3', region=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-6'])
+mdb.models['Model-1'].ExpressionField(description='', expression=
+    'pow(e,((-3)*((pow(Z,2))+pow(X,2))/0.00002809))', localCsys=None, name=
+    'AnalyticalField-4')
+mdb.models['Model-1'].ExpressionField(description='', expression=
+    'pow(e,((-3)*((pow(Z,2))+pow(X,2))/0.00002809))', localCsys=
+    mdb.models['Model-1'].rootAssembly.datums[16], name='AnalyticalField-5')
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-7', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].faces.getSequenceFromMask(
+    ('[#10 ]', ), ))
+mdb.models['Model-1'].SurfaceHeatFlux(createStepName='Step-5', 
+    distributionType=FIELD, field='AnalyticalField-5', magnitude=12493300.0, 
+    name='Load-4', region=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-7'])
+mdb.models['Model-1'].rootAssembly.Set(cells=
+    mdb.models['Model-1'].rootAssembly.instances['substrate-1'].cells.getSequenceFromMask(
+    mask=('[#7 ]', ), )+\
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].cells.getSequenceFromMask(
+    mask=('[#f ]', ), ), edges=
+    mdb.models['Model-1'].rootAssembly.instances['substrate-1'].edges.getSequenceFromMask(
+    mask=('[#fffffdf ]', ), )+\
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].edges.getSequenceFromMask(
+    mask=('[#ffffffff #f ]', ), ), faces=
+    mdb.models['Model-1'].rootAssembly.instances['substrate-1'].faces.getSequenceFromMask(
+    mask=('[#ffff ]', ), )+\
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].faces.getSequenceFromMask(
+    mask=('[#1fffff ]', ), ), name='Set-1', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['substrate-1'].vertices.getSequenceFromMask(
+    mask=('[#ffcf ]', ), )+\
+    mdb.models['Model-1'].rootAssembly.instances['layer-1'].vertices.getSequenceFromMask(
+    mask=('[#fffff ]', ), ))
+mdb.models['Model-1'].Temperature(createStepName='Initial', 
+    crossSectionDistribution=CONSTANT_THROUGH_THICKNESS, distributionType=
+    UNIFORM, magnitudes=(25.0, ), name='Predefined Field-1', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-1'])
+mdb.models['Model-1'].HeatTransferStep(deltmx=350.0, initialInc=0.01, maxInc=
+    220.0, maxNumInc=1000, minInc=0.0042, name='cooling', previous='Step-5', 
+    timePeriod=420.0)
+mdb.models['Model-1'].loads['Load-1'].deactivate('Step-3')
+mdb.models['Model-1'].loads['Load-2'].deactivate('Step-4')
+mdb.models['Model-1'].loads['Load-3'].deactivate('Step-5')
+mdb.models['Model-1'].loads['Load-4'].deactivate('cooling')
+mdb.models['Model-1'].parts['layer'].setElementType(elemTypes=(ElemType(
+    elemCode=DCC3D8, elemLibrary=STANDARD), ElemType(elemCode=DC3D6, 
+    elemLibrary=STANDARD), ElemType(elemCode=DC3D4, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['layer'].cells.getSequenceFromMask((
+    '[#f ]', ), ), ))
+mdb.models['Model-1'].parts['substrate'].setElementType(elemTypes=(ElemType(
+    elemCode=DCC3D8, elemLibrary=STANDARD), ElemType(elemCode=DC3D6, 
+    elemLibrary=STANDARD), ElemType(elemCode=DC3D4, elemLibrary=STANDARD)), 
+    regions=(
+    mdb.models['Model-1'].parts['substrate'].cells.getSequenceFromMask((
+    '[#7 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='additive_manufacturing', 
+    nodalOutputPrecision=SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=
+    1, queue=None, resultsFormat=ODB, scratch='', type=ANALYSIS, 
+    userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['additive_manufacturing'].submit(consistencyChecking=OFF)
+mdb.jobs['additive_manufacturing']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'jobName': 'additive_manufacturing', 'clientHost': 'RASHBRO', 'handle': 0})
+mdb.jobs['additive_manufacturing']._Message(ODB_FILE, {
+    'file': 'C:\\Windows\\System32\\additive_manufacturing.odb', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(COMPLETED, {
+    'message': 'Analysis phase complete', 'phase': BATCHPRE_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing', 'clientHost': 'RASHBRO', 
+    'handle': 19648})
+mdb.jobs['additive_manufacturing']._Message(STEP, {'stepId': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 0, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MEMORY_ESTIMATE, {'memory': 28.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(PHYSICAL_MEMORY, {
+    'physical_memory': 7517.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MINIMUM_MEMORY, {
+    'minimum_memory': 19.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 0, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 1, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.01, 'stepTime': 0.01, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 0, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 1, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.02, 'stepTime': 0.02, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 0, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 1, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.03, 'stepTime': 0.03, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 0, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 1, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.05, 'stepTime': 0.05, 'timeIncrement': 0.02, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 0, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 1, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.09, 'stepTime': 0.09, 'timeIncrement': 0.04, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 0, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 1, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.1, 'stepTime': 0.1, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(END_STEP, {'stepId': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STEP, {'stepId': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MEMORY_ESTIMATE, {'memory': 28.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(PHYSICAL_MEMORY, {
+    'physical_memory': 7517.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MINIMUM_MEMORY, {
+    'minimum_memory': 19.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'THERE ARE 2 UNCONNECTED REGIONS IN THE MODEL.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 3, 'iterations': 3, 
+    'totalTime': 0.11, 'stepTime': 0.01, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.12, 'stepTime': 0.02, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.13, 'stepTime': 0.03, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 0.15, 'stepTime': 0.05, 'timeIncrement': 0.02, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 0.18, 'stepTime': 0.08, 'timeIncrement': 0.03, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 0.225, 'stepTime': 0.125, 'timeIncrement': 0.045, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 7, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 'increment': 7, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 0.2925, 'stepTime': 0.1925, 'timeIncrement': 0.0675, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 8, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 'increment': 8, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 0.39375, 'stepTime': 0.29375, 'timeIncrement': 0.10125, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 9, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 'increment': 9, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 3, 'iterations': 3, 
+    'totalTime': 0.545625, 'stepTime': 0.445625, 'timeIncrement': 0.151875, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 10, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 
+    'increment': 10, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 0.7734375, 'stepTime': 0.6734375, 
+    'timeIncrement': 0.2278125, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 11, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 
+    'increment': 11, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 1.00125, 'stepTime': 0.90125, 
+    'timeIncrement': 0.2278125, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 12, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 
+    'increment': 12, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 1.34296875, 'stepTime': 1.24296875, 
+    'timeIncrement': 0.34171875, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 13, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 
+    'increment': 13, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 1.6846875, 'stepTime': 1.5846875, 
+    'timeIncrement': 0.34171875, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 14, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 
+    'increment': 14, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 2.197265625, 'stepTime': 2.097265625, 
+    'timeIncrement': 0.512578125, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 15, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 
+    'increment': 15, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 2.70984375, 'stepTime': 2.60984375, 
+    'timeIncrement': 0.512578125, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 16, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 
+    'increment': 16, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 3.32195870206759, 
+    'stepTime': 3.22195870206759, 'timeIncrement': 0.612114952067587, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 17, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 
+    'increment': 17, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 3.93407365413518, 
+    'stepTime': 3.83407365413518, 'timeIncrement': 0.612114952067587, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 18, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 
+    'increment': 18, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 4.54618860620276, 
+    'stepTime': 4.44618860620276, 'timeIncrement': 0.612114952067587, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 1, 'frame': 19, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 2, 
+    'increment': 19, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 5.1, 'stepTime': 5.0, 
+    'timeIncrement': 0.553811393797237, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(END_STEP, {'stepId': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STEP, {'stepId': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MEMORY_ESTIMATE, {'memory': 28.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(PHYSICAL_MEMORY, {
+    'physical_memory': 7517.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MINIMUM_MEMORY, {
+    'minimum_memory': 19.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'THERE ARE 2 UNCONNECTED REGIONS IN THE MODEL.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 5.11, 'stepTime': 0.01, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 5.12, 'stepTime': 0.02, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 5.13, 'stepTime': 0.03, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 5.15, 'stepTime': 0.05, 'timeIncrement': 0.02, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 5.19, 'stepTime': 0.09, 'timeIncrement': 0.04, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 5.25, 'stepTime': 0.15, 'timeIncrement': 0.06, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 7, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 'increment': 7, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 5.31, 'stepTime': 0.21, 'timeIncrement': 0.06, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 8, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 'increment': 8, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 5.4, 'stepTime': 0.3, 'timeIncrement': 0.09, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 9, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 'increment': 9, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 5.535, 'stepTime': 0.435, 'timeIncrement': 0.135, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 10, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 10, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 5.67, 'stepTime': 0.57, 
+    'timeIncrement': 0.135, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 11, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 11, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 5.8725, 'stepTime': 0.7725, 
+    'timeIncrement': 0.2025, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 12, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 12, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 6.075, 'stepTime': 0.975, 
+    'timeIncrement': 0.2025, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 13, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 13, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 6.37843954412157, 
+    'stepTime': 1.27843954412157, 'timeIncrement': 0.303439544121573, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 14, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 14, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 6.68187908824314, 
+    'stepTime': 1.58187908824315, 'timeIncrement': 0.303439544121573, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 15, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 15, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 6.98531863236471, 
+    'stepTime': 1.88531863236472, 'timeIncrement': 0.303439544121573, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 16, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 16, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 7.43602080928179, 
+    'stepTime': 2.3360208092818, 'timeIncrement': 0.450702176917076, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 17, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 17, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 7.88672298619887, 
+    'stepTime': 2.78672298619887, 'timeIncrement': 0.450702176917076, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 18, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 18, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 8.33742516311594, 
+    'stepTime': 3.23742516311595, 'timeIncrement': 0.450702176917076, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 19, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 19, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 8.78812734003302, 
+    'stepTime': 3.68812734003302, 'timeIncrement': 0.450702176917076, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 20, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 20, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 9.2388295169501, 'stepTime': 4.1388295169501, 
+    'timeIncrement': 0.450702176917076, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 21, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 21, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 9.68953169386717, 
+    'stepTime': 4.58953169386718, 'timeIncrement': 0.450702176917076, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 2, 'frame': 22, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 3, 
+    'increment': 22, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 10.1, 'stepTime': 5.0, 
+    'timeIncrement': 0.410468306132823, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(END_STEP, {'stepId': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STEP, {'stepId': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MEMORY_ESTIMATE, {'memory': 28.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(PHYSICAL_MEMORY, {
+    'physical_memory': 7517.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MINIMUM_MEMORY, {
+    'minimum_memory': 19.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'THERE ARE 2 UNCONNECTED REGIONS IN THE MODEL.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 10.11, 'stepTime': 0.01, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 10.12, 'stepTime': 0.02, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 10.13, 'stepTime': 0.03, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 10.15, 'stepTime': 0.05, 'timeIncrement': 0.02, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 10.19, 'stepTime': 0.09, 'timeIncrement': 0.04, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 10.25, 'stepTime': 0.15, 'timeIncrement': 0.06, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 7, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 'increment': 7, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 10.31, 'stepTime': 0.21, 'timeIncrement': 0.06, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 8, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 'increment': 8, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 10.4, 'stepTime': 0.3, 'timeIncrement': 0.09, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 9, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 'increment': 9, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 3, 'iterations': 3, 
+    'totalTime': 10.535, 'stepTime': 0.435, 'timeIncrement': 0.135, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 10, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 10, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 10.67, 'stepTime': 0.57, 
+    'timeIncrement': 0.135, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 11, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 11, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 10.805, 'stepTime': 0.705, 
+    'timeIncrement': 0.135, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 12, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 12, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 11.0075, 'stepTime': 0.9075, 
+    'timeIncrement': 0.2025, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 13, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 13, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 11.21, 'stepTime': 1.11, 
+    'timeIncrement': 0.2025, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 14, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 14, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 11.4125, 'stepTime': 1.3125, 
+    'timeIncrement': 0.2025, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 15, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 15, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 11.71625, 'stepTime': 1.61625, 
+    'timeIncrement': 0.30375, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 16, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 16, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 12.02, 'stepTime': 1.92, 
+    'timeIncrement': 0.30375, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 17, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 17, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 12.32375, 'stepTime': 2.22375, 
+    'timeIncrement': 0.30375, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 18, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 18, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 12.7666983146208, 
+    'stepTime': 2.66669831462083, 'timeIncrement': 0.442948314620828, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 19, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 19, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 13.2096466292417, 
+    'stepTime': 3.10964662924166, 'timeIncrement': 0.442948314620828, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 20, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 20, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 13.6525949438625, 
+    'stepTime': 3.55259494386248, 'timeIncrement': 0.442948314620828, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 21, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 21, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 14.0955432584833, 
+    'stepTime': 3.99554325848331, 'timeIncrement': 0.442948314620828, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 22, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 22, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 14.5384915731041, 
+    'stepTime': 4.43849157310414, 'timeIncrement': 0.442948314620828, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 23, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 23, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 14.981439887725, 
+    'stepTime': 4.88143988772497, 'timeIncrement': 0.442948314620828, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 3, 'frame': 24, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 4, 
+    'increment': 24, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 15.1, 'stepTime': 5.0, 
+    'timeIncrement': 0.118560112275033, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(END_STEP, {'stepId': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STEP, {'stepId': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MEMORY_ESTIMATE, {'memory': 28.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(PHYSICAL_MEMORY, {
+    'physical_memory': 7517.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MINIMUM_MEMORY, {
+    'minimum_memory': 19.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'THERE ARE 2 UNCONNECTED REGIONS IN THE MODEL.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 15.11, 'stepTime': 0.01, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 15.12, 'stepTime': 0.02, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 15.13, 'stepTime': 0.03, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 15.15, 'stepTime': 0.05, 'timeIncrement': 0.02, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 15.18, 'stepTime': 0.08, 'timeIncrement': 0.03, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 15.225, 'stepTime': 0.125, 'timeIncrement': 0.045, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 7, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 'increment': 7, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 15.2925, 'stepTime': 0.1925, 'timeIncrement': 0.0675, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 8, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 'increment': 8, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 15.39375, 'stepTime': 0.29375, 'timeIncrement': 0.10125, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 9, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 'increment': 9, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 15.495, 'stepTime': 0.395, 'timeIncrement': 0.10125, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 10, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 10, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 15.646875, 'stepTime': 0.546875, 
+    'timeIncrement': 0.151875, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 11, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 11, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 15.79875, 'stepTime': 0.69875, 
+    'timeIncrement': 0.151875, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 12, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 12, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 16.0265625, 'stepTime': 0.9265625, 
+    'timeIncrement': 0.2278125, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 13, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 13, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 16.254375, 'stepTime': 1.154375, 
+    'timeIncrement': 0.2278125, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 14, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 14, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 16.59609375, 'stepTime': 1.49609375, 
+    'timeIncrement': 0.34171875, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 15, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 15, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 16.9378125, 'stepTime': 1.8378125, 
+    'timeIncrement': 0.34171875, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 16, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 16, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 17.450390625, 'stepTime': 2.350390625, 
+    'timeIncrement': 0.512578125, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 17, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 17, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 17.96296875, 'stepTime': 2.86296875, 
+    'timeIncrement': 0.512578125, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 18, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 18, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 18.681802137269, 
+    'stepTime': 3.58180213726903, 'timeIncrement': 0.718833387269025, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 19, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 19, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 19.4006355245381, 
+    'stepTime': 4.30063552453805, 'timeIncrement': 0.718833387269025, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 4, 'frame': 20, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 5, 
+    'increment': 20, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 20.1, 'stepTime': 5.0, 
+    'timeIncrement': 0.69936447546195, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(END_STEP, {'stepId': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STEP, {'stepId': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MEMORY_ESTIMATE, {'memory': 28.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(PHYSICAL_MEMORY, {
+    'physical_memory': 7517.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(MINIMUM_MEMORY, {
+    'minimum_memory': 18.0, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(WARNING, {
+    'message': 'THERE ARE 2 UNCONNECTED REGIONS IN THE MODEL.', 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 20.11, 'stepTime': 0.01, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 20.12, 'stepTime': 0.02, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 20.13, 'stepTime': 0.03, 'timeIncrement': 0.01, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 20.15, 'stepTime': 0.05, 'timeIncrement': 0.02, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 20.19, 'stepTime': 0.09, 'timeIncrement': 0.04, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 20.25, 'stepTime': 0.15, 'timeIncrement': 0.06, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 7, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 'increment': 7, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 20.34, 'stepTime': 0.24, 'timeIncrement': 0.09, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 8, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 'increment': 8, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 20.475, 'stepTime': 0.375, 'timeIncrement': 0.135, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 9, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 'increment': 9, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 2, 'iterations': 2, 
+    'totalTime': 20.6775, 'stepTime': 0.5775, 'timeIncrement': 0.2025, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 10, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 10, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 20.98125, 'stepTime': 0.88125, 
+    'timeIncrement': 0.30375, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 11, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 11, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 21.436875, 'stepTime': 1.336875, 
+    'timeIncrement': 0.455625, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 12, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 12, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 22.1203125, 'stepTime': 2.0203125, 
+    'timeIncrement': 0.6834375, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 13, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 13, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 23.14546875, 'stepTime': 3.04546875, 
+    'timeIncrement': 1.02515625, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 14, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 14, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 24.683203125, 'stepTime': 4.583203125, 
+    'timeIncrement': 1.537734375, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 15, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 15, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 26.2209375, 'stepTime': 6.1209375, 
+    'timeIncrement': 1.537734375, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 16, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 16, 'attempts': 1, 'severe': 0, 'equilibrium': 3, 
+    'iterations': 3, 'totalTime': 28.5275390625, 'stepTime': 8.4275390625, 
+    'timeIncrement': 2.3066015625, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 17, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 17, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 31.98744140625, 'stepTime': 11.88744140625, 
+    'timeIncrement': 3.45990234375, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 18, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 18, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 35.44734375, 'stepTime': 15.34734375, 
+    'timeIncrement': 3.45990234375, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 19, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 19, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 40.637197265625, 'stepTime': 20.537197265625, 
+    'timeIncrement': 5.189853515625, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 20, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 20, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 45.82705078125, 'stepTime': 25.72705078125, 
+    'timeIncrement': 5.189853515625, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 21, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 21, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 53.6118310546875, 
+    'stepTime': 33.5118310546875, 'timeIncrement': 7.7847802734375, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 22, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 22, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 65.2890014648438, 
+    'stepTime': 45.1890014648438, 'timeIncrement': 11.6771704101563, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 23, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 23, 'attempts': 1, 'severe': 0, 'equilibrium': 2, 
+    'iterations': 2, 'totalTime': 82.8047570800781, 
+    'stepTime': 62.7047570800781, 'timeIncrement': 17.5157556152344, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 24, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 24, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 109.07839050293, 
+    'stepTime': 88.9783905029297, 'timeIncrement': 26.2736334228516, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 25, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 25, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 161.625657348633, 
+    'stepTime': 141.525657348633, 'timeIncrement': 52.5472668457031, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 26, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 26, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 266.720191040039, 
+    'stepTime': 246.620191040039, 'timeIncrement': 105.094533691406, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(ODB_FRAME, {'step': 5, 'frame': 27, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(STATUS, {'step': 6, 
+    'increment': 27, 'attempts': 1, 'severe': 0, 'equilibrium': 1, 
+    'iterations': 1, 'totalTime': 440.1, 'stepTime': 420.0, 
+    'timeIncrement': 173.379808959961, 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(END_STEP, {'stepId': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(COMPLETED, {
+    'message': 'Analysis phase complete', 'phase': STANDARD_PHASE, 
+    'jobName': 'additive_manufacturing'})
+mdb.jobs['additive_manufacturing']._Message(JOB_COMPLETED, {
+    'time': 'Sat Oct 31 05:20:11 2026', 'jobName': 'additive_manufacturing'})
+# Save by Rashaad Rowther on 2026_10_31-05.54.46; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-05.54.49; build 2024 2023_09_21-18.25.25 RELr426 190762
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.JobFromInputFile(atTime=None, explicitPrecision=SINGLE, 
+    getMemoryFromAnalysis=True, inputFileName=
+    'C:\\Project\\Deep Leanring x MP2\\deep learning x mp2\\WAAM_Abaqus\\waam_al5356.inp'
+    , memory=90, memoryUnits=PERCENTAGE, multiprocessingMode=DEFAULT, name=
+    'waam_al5356', nodalOutputPrecision=SINGLE, numCpus=1, numGPUs=0, 
+    numThreadsPerMpiProcess=1, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['waam_al5356'].submit(consistencyChecking=OFF)
+# Save by Rashaad Rowther on 2026_10_31-06.34.45; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.46; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.46; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.47; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.47; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.48; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.48; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.52; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.53; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.53; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.53; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.53; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.53; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.54; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.54; build 2024 2023_09_21-18.25.25 RELr426 190762
+# Save by Rashaad Rowther on 2026_10_31-06.34.54; build 2024 2023_09_21-18.25.25 RELr426 190762

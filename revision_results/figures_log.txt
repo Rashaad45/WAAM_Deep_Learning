@@ -1,0 +1,12 @@
+﻿wrote fig1_mapping
+wrote fig2_prominence
+wrote fig3_benchmark
+wrote fig4_paired
+wrote fig5_loss
+wrote fig_confusion
+wrote fig_roc_pr
+wrote fig_ablation
+wrote fig_calibration
+wrote fig_levels
+wrote fig_importance
+wrote fig_shap

@@ -1,0 +1,13 @@
+# Python 3.11.4 (Windows 10)
+# Pinned versions actually imported by src/, make_figures.py and revision_results/ scripts.
+# python-docx is only needed to rebuild the manuscript (paper/build_manuscript.py).
+numpy==2.4.6
+pandas==2.3.3
+scipy==1.17.1
+scikit-learn==1.9.1
+PyWavelets==1.9.0
+matplotlib==3.11.2
+torch==2.6.0+cu124
+statsmodels==0.15.0
+shap==0.51.0
+python-docx==1.2.0
